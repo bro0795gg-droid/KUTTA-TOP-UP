@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KUTTA TOP UP</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#070b14;
+    color:#fff;
+    min-height:100vh;
+}
+
+header{
+    background:linear-gradient(135deg,#111827,#172554);
+    padding:22px 15px;
+    text-align:center;
+    border-bottom:1px solid #26344f;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+.logo span{
+    color:#facc15;
+}
+
+.subtitle{
+    color:#aebbd0;
+    margin-top:6px;
+    font-size:14px;
+}
+
+.notice{
+    margin:15px;
+    padding:13px;
+    background:#241b05;
+    border:1px solid #806300;
+    border-radius:12px;
+    text-align:center;
+    color:#ffe27a;
+    font-size:14px;
+}
+
+.container{
+    width:94%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin:25px 0 18px;
+    font-size:24px;
+}
+
+.section-title span{
+    color:#38bdf8;
+}
+
+/* PACKAGES */
+
+.packages{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:14px;
+}
+
+.package{
+    background:#101827;
+    border:1px solid #243653;
+    border-radius:15px;
+    padding:18px 12px;
+    text-align:center;
+    transition:.2s;
+}
+
+.package:hover{
+    transform:translateY(-3px);
+    border-color:#38bdf8;
+}
+
+.diamond{
+    font-size:28px;
+}
+
+.package h3{
+    margin:8px 0;
+    color:#f8fafc;
+}
+
+.price{
+    font-size:21px;
+    color:#38bdf8;
+    font-weight:bold;
+    margin:7px 0 12px;
+}
+
+.buy-btn{
+    width:100%;
+    border:none;
+    border-radius:9px;
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.buy-btn:hover{
+    background:#1d4ed8;
+}
+
+/* OFFERS */
+
+.offers{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;
+}
+
+.offer{
+    padding:18px;
+    background:linear-gradient(135deg,#172554,#111827);
+    border:1px solid #30466b;
+    border-radius:14px;
+}
+
+.offer h3{
+    color:#facc15;
+    margin-bottom:6px;
+}
+
+/* ORDER BOX */
+
+.order-box{
+    margin:30px 0;
+    padding:22px;
+    background:#0d1524;
+    border:1px solid #263b5b;
+    border-radius:18px;
+}
+
+.order-box h2{
+    text-align:center;
+    margin-bottom:18px;
+    color:#38bdf8;
+}
+
+label{
+    display:block;
+    margin:12px 0 6px;
+    color:#cbd5e1;
+}
+
+input,select{
+    width:100%;
+    padding:13px;
+    border-radius:9px;
+    border:1px solid #334155;
+    background:#080f1c;
+    color:white;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#38bdf8;
+}
+
+.selected{
+    margin-top:15px;
+    padding:12px;
+    background:#111c30;
+    border-radius:10px;
+    color:#a5dfff;
+    display:none;
+}
+
+/* PAYMENT */
+
+.payment{
+    margin:25px 0;
+    padding:20px;
+    background:#101827;
+    border-radius:15px;
+    border:1px solid #273a59;
+}
+
+.payment h2{
+    color:#facc15;
+    margin-bottom:12px;
+}
+
+.pay-card{
+    background:#0a111f;
+    padding:15px;
+    margin-top:10px;
+    border-radius:10px;
+}
+
+.number{
+    font-size:20px;
+    font-weight:bold;
+    color:#4ade80;
+    margin:7px 0;
+}
+
+.copy-btn{
+    background:#334155;
+    color:#fff;
+    border:0;
+    padding:7px 12px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+    width:100%;
+    margin-top:18px;
+    padding:15px;
+    border:0;
+    border-radius:10px;
+    background:#25D366;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.whatsapp:hover{
+    background:#1ebe5d;
+}
+
+.help{
+    text-align:center;
+    margin:20px 0;
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:35px;
+    padding:25px 15px;
+    background:#050912;
+    text-align:center;
+    color:#718096;
+    border-top:1px solid #172033;
+}
+
+footer strong{
+    color:#38bdf8;
+}
+
+/* TOAST */
+
+#toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#172033;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:9px;
+    display:none;
+    z-index:999;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+    .logo{
+        font-size:25px;
+    }
+
+    .packages{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .package{
+        padding:14px 8px;
+    }
+
+    .price{
+        font-size:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">💎 KUTTA <span>TOP UP</span></div>
+    <div class="subtitle">Fast • Secure • Trusted Top Up Service</div>
+</header>
+
+<div class="notice">
+    📢 <b>নোটিশ:</b> অর্ডার করার আগে সঠিক Player ID এবং Package নির্বাচন করুন।
+</div>
+
+<div class="container">
+
+<!-- OFFERS -->
+
+<h2 class="section-title">🔥 <span>Special Offers</span></h2>
+
+<div class="offers">
+
+    <div class="offer">
+        <h3>💎 25 Diamond</h3>
+        <p>মাত্র <b>20 টাকা</b></p>
+    </div>
+
+    <div class="offer">
+        <h3>💎 120 Diamond</h3>
+        <p>মাত্র <b>88 টাকা</b></p>
+    </div>
+
+    <div class="offer">
+        <h3>⭐ Weekly Lite</h3>
+        <p>মাত্র <b>42 টাকা</b></p>
+    </div>
+
+    <div class="offer">
+        <h3>🔥 Weekly</h3>
+        <p>মাত্র <b>158 টাকা</b></p>
+    </div>
+
+</div>
+
+
+<!-- DIAMOND PACKAGES -->
+
+<h2 class="section-title">💎 <span>Diamond Packages</span></h2>
+
+<div class="packages">
+
+    <div class="package">
+        <div class="diamond">💎</div>
+        <h3>25 Diamond</h3>
+        <div class="price">৳ 20</div>
+        <button class="buy-btn"
+        onclick="selectPackage('25 Diamond','20')">
+        BUY NOW
+        </button>
+    </div>
+
+    <div class="package">
+        <div class="diamond">💎</div>
+        <h3>120 Diamond</h3>
+        <div class="price">৳ 88</div>
+        <button class="buy-btn"
+        onclick="selectPackage('120 Diamond','88')">
+        BUY NOW
+        </button>
+    </div>
+
+    <div class="package">
+        <div class="diamond">💎</div>
+        <h3>Weekly Lite</h3>
+        <div class="price">৳ 40</div>
+        <button class="buy-btn"
+        onclick="selectPackage('Weekly Lite','40')">
+        BUY NOW
+        </button>
+    </div>
+
+    <div class="package">
+        <div class="diamond">💎</div>
+        <h3>Weekly</h3>
+        <div class="price">৳ 158</div>
+        <button class="buy-btn"
+        onclick="selectPackage('Weekly','158')">
+        BUY NOW
+        </button>
+        </div>
+  
+    <div class="package">
+        <div class="diamond">💎</div>
+        <h3>Monthly</h3>
+        <div class="price">৳ 790
+    
+       </div>
+        <button class="buy-btn"
+        onclick="selectPackage('Monthly','790')">
+        BUY NOW
+        </button>
+    </div>
+
+    <div class="package">
+        <div class="diamond">💎</div>
+        <h3>Custom</h3>
+        <div class="price">Contact</div>
+        <button class="buy-btn"
+        onclick="selectPackage('Custom Package','Custom Price')">
+        ORDER
+        </button>
+    </div>
+
+</div>
+
+
+<!-- ORDER -->
+
+<div class="order-box">
+
+<h2>🛒 Order Now</h2>
+
+<label>🎮 Player ID</label>
+<input
+    type="text"
+    id="playerId"
+    placeholder="আপনার Player ID লিখুন"
+>
+
+<label>📦 Package</label>
+
+<select id="package">
+    <option value="">-- Package নির্বাচন করুন --</option>
+    <option value="25 Diamond|23">25 Diamond - ৳20</option>
+    <option value="120 Diamond|96">120 Diamond - ৳88</option>
+    <option value="Weekly Lite|38">Weekly Lite - ৳40</option>
+    <option value="Weekly|154">Weekly - ৳158</option>
+    <option value="Monthly|780">Monthly - ৳790</option>
+    <option value="Custom Package|Custom Price">Custom Package</option>
+</select>
+
+<div class="selected" id="selectedPackage">
+    Selected Package:
+</div>
+
+<label>💳 Payment Method</label>
+
+<select id="payment">
+    <option value="">-- Payment নির্বাচন করুন --</option>
+    <option value="bKash">bKash</option>
+    <option value="Nagad">Nagad</option>
+</select>
+
+<label>🔢 Transaction ID</label>
+
+<input
+    type="text"
+    id="trx"
+    placeholder="Payment করার পর Transaction ID দিন"
+>
+
+<button class="whatsapp" onclick="sendOrder()">
+    🟢 ORDER VIA WHATSAPP
+</button>
+
+<div class="help">
+    Order button চাপলে আপনার তথ্যসহ WhatsApp খুলবে।
+</div>
+
+</div>
+
+
+<!-- PAYMENT -->
+
+<div class="payment">
+
+<h2>💳 Payment Information</h2>
+
+<div class="pay-card">
+    <b>🟣 bKash</b>
+    <div class="number">01631218707</div>
+    <button class="copy-btn"
+    onclick="copyNumber('01631218707')">
+    Copy Number
+    </button>
+</div>
+
+<div class="pay-card">
+    <b>🔴 Nagad</b>
+    <div class="number">01631218707</div>
+    <button class="copy-btn"
+    onclick="copyNumber('01631218707')">
+    Copy Number
+    </button>
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+    <p>💎 <strong>KUTTA TOP UP</strong></p>
+    <p>Fast & Secure Gaming Top Up</p>
+    <p style="margin-top:8px;">
+        WhatsApp: 01849609928
+    </p>
+</footer>
+
+
+<div id="toast"></div>
+
+
+<script>
+
+const whatsappNumber = "8801849609928";
+
+function selectPackage(name, price){
+
+    const select = document.getElementById("package");
+
+    for(let i=0;i<select.options.length;i++){
+
+        if(select.options[i].value.startsWith(name + "|")){
+            select.selectedIndex = i;
+            break;
+        }
+
+    }
+
+    showSelected(name,price);
+
+    document.querySelector(".order-box")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+
+document.getElementById("package")
+.addEventListener("change",function(){
+
+    if(!this.value){
+
+        document.getElementById("selectedPackage")
+        .style.display="none";
+
+        return;
+    }
+
+    const data=this.value.split("|");
+
+    showSelected(data[0],data[1]);
+
+});
+
+
+function showSelected(name,price){
+
+    const box=document.getElementById("selectedPackage");
+
+    box.innerHTML =
+    "✅ Selected: <b>"+name+
+    "</b> — ৳"+price;
+
+    box.style.display="block";
+}
+
+
+function sendOrder(){
+
+    const playerId =
+    document.getElementById("playerId").value.trim();
+
+    const packageValue =
+    document.getElementById("package").value;
+
+    const payment =
+    document.getElementById("payment").value;
+
+    const trx =
+    document.getElementById("trx").value.trim();
+
+
+    if(!playerId){
+
+        alert("⚠️ Player ID দিন।");
+        return;
+    }
+
+    if(!packageValue){
+
+        alert("⚠️ একটি Package নির্বাচন করুন।");
+        return;
+    }
+
+    if(!payment){
+
+        alert("⚠️ Payment Method নির্বাচন করুন।");
+        return;
+    }
+
+    if(!trx){
+
+        alert("⚠️ Transaction ID দিন।");
+        return;
+    }
+
+
+    const data=packageValue.split("|");
+
+    const packageName=data[0];
+    const price=data[1];
+
+
+    const message =
+`🔥 KUTTA TOP UP ORDER
+
+🎮 Player ID: ${playerId}
+
+📦 Package: ${packageName}
+
+💰 Price: ৳${price}
+
+💳 Payment: ${payment}
+
+🔢 Transaction ID: ${trx}
+
+━━━━━━━━━━━━━━
+💎 KUTTA TOP UP
+🟢 Please confirm my order.`;
+
+
+    const url =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+
+    window.open(url,"_blank");
+
+}
+
+
+function copyNumber(number){
+
+    navigator.clipboard.writeText(number)
+    .then(function(){
+
+        showToast("✅ Number copied: " + number);
+
+    })
+    .catch(function(){
+
+        alert("Number: " + number);
+
+    });
+
+}
+
+
+function showToast(text){
+
+    const toast=document.getElementById("toast");
+
+    toast.innerText=text;
+    toast.style.display="block";
+
+    setTimeout(function(){
+
+        toast.style.display="none";
+
+    },2500);
+
+}
+
+</script>
+
+</body>
+  </html>
