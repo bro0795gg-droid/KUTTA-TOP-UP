@@ -3,785 +3,1428 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#07110d">
+<meta name="theme-color" content="#050807">
 <title>KUTTA TOP UP</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
- --bg:#050807;
- --card:#0d1511;
- --card2:#111d17;
- --gold:#ffd54a;
- --green:#20d47b;
- --blue:#35a7ff;
- --red:#ff5757;
- --text:#f5f7f6;
- --muted:#9ba8a2;
- --border:#203128;
-}
+
 body{
- font-family:Arial,sans-serif;
- background:radial-gradient(circle at top,#10251a 0,#050807 45%);
- color:var(--text);
- min-height:100vh;
+font-family:Arial,sans-serif;
+background:
+radial-gradient(circle at top,#153522 0,#07100b 38%,#030504 100%);
+color:#fff;
+min-height:100vh;
+padding-bottom:75px;
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.header{
- position:sticky;top:0;z-index:50;
- background:rgba(5,8,7,.92);
- backdrop-filter:blur(15px);
- border-bottom:1px solid var(--border);
- padding:13px 15px;
- display:flex;align-items:center;justify-content:space-between;
+
+header{
+text-align:center;
+padding:22px 12px 18px;
+background:rgba(4,8,6,.96);
+border-bottom:1px solid #31523d;
+position:sticky;
+top:0;
+z-index:20;
 }
+
 .logo{
- font-size:22px;font-weight:900;color:var(--gold);
+width:76px;
+height:76px;
+margin:auto;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+background:linear-gradient(135deg,#ffd700,#1685ff);
+box-shadow:0 0 25px rgba(255,215,0,.35);
 }
-.logo small{display:block;font-size:9px;color:var(--muted);letter-spacing:2px}
-.userBox{display:flex;align-items:center;gap:8px}
-.avatar{
- width:35px;height:35px;border-radius:50%;
- background:linear-gradient(135deg,var(--green),var(--blue));
- display:flex;align-items:center;justify-content:center;
- font-weight:bold;
+
+header h1{
+color:#ffd700;
+margin-top:8px;
+font-size:25px;
 }
-.container{max-width:1050px;margin:auto;padding:15px 15px 90px}
-.hero{
- background:linear-gradient(135deg,#10281c,#0a1210 60%,#182615);
- border:1px solid #284333;
- border-radius:24px;padding:24px 18px;margin-bottom:15px;
- box-shadow:0 15px 45px rgba(0,0,0,.3);
+
+header p{
+color:#aaa;
+font-size:12px;
+margin-top:4px;
 }
-.hero h1{font-size:30px;margin-bottom:8px}
-.hero h1 span{color:var(--gold)}
-.hero p{color:var(--muted);line-height:1.5}
+
 .notice{
- margin-top:16px;background:#161b12;
- border:1px solid #4b4a20;border-radius:13px;
- padding:12px;color:#ffe878;font-size:13px;
+width:94%;
+max-width:760px;
+margin:12px auto;
+padding:12px;
+border-radius:12px;
+background:#211d05;
+border:1px solid #705d00;
+color:#ffe979;
+text-align:center;
+font-size:13px;
 }
-.grid{
- display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+
+.container{
+width:94%;
+max-width:850px;
+margin:auto;
 }
-@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
+
 .card{
- background:linear-gradient(145deg,var(--card),#09100c);
- border:1px solid var(--border);
- border-radius:18px;padding:16px;
- box-shadow:0 8px 25px rgba(0,0,0,.22);
+background:linear-gradient(145deg,#101812,#080d0a);
+border:1px solid #26392d;
+border-radius:18px;
+padding:17px;
+margin-bottom:15px;
+box-shadow:0 8px 25px rgba(0,0,0,.28);
 }
-.card h3{margin-bottom:7px}
-.price{font-size:22px;font-weight:900;color:var(--gold);margin:8px 0}
-.muted{color:var(--muted);font-size:13px}
+
+.card h2{
+color:#ffd700;
+font-size:19px;
+margin-bottom:13px;
+}
+
+.card h3{
+margin-bottom:8px;
+}
+
+.package{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.package button{
+min-height:86px;
+padding:10px;
+border:1px solid #394a40;
+border-radius:13px;
+background:linear-gradient(145deg,#111914,#1a241e);
+color:#ffd700;
+font-weight:bold;
+cursor:pointer;
+}
+
+.package button:hover,
+.package button.selected{
+background:linear-gradient(135deg,#ffd700,#ff9d00);
+color:#000;
+}
+
+.package b{
+font-size:20px;
+display:block;
+margin:5px 0;
+}
+
 .btn{
- border:0;border-radius:12px;padding:11px 14px;
- font-weight:800;width:100%;margin-top:10px;
- background:linear-gradient(135deg,var(--green),#0fae62);
- color:#031109;
+width:100%;
+padding:13px;
+margin-top:9px;
+border:0;
+border-radius:11px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(90deg,#ffd700,#ff9d00);
+color:#000;
 }
-.btn.gold{background:linear-gradient(135deg,#ffe36b,#e8ad19)}
-.btn.blue{background:linear-gradient(135deg,#58b8ff,#238be0);color:#03101a}
-.btn.red{background:#7d2020;color:#fff}
-.btn.dark{background:#17241d;color:#fff;border:1px solid #294034}
-.section{margin-top:22px}
-.sectionTitle{
- display:flex;justify-content:space-between;align-items:center;
- margin-bottom:11px;
+
+.green{
+background:linear-gradient(90deg,#25d366,#128c7e);
+color:#fff;
 }
-.sectionTitle h2{font-size:20px}
+
+.blue{
+background:linear-gradient(90deg,#1685ff,#0055bb);
+color:#fff;
+}
+
+.red{
+background:linear-gradient(90deg,#ff4444,#a00000);
+color:#fff;
+}
+
+.gray{
+background:#303632;
+color:#fff;
+}
+
+.info{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:11px;
+margin:6px 0;
+background:#121a15;
+border-radius:10px;
+font-size:13px;
+}
+
+.value{
+color:#ffd700;
+font-weight:bold;
+text-align:right;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:13px;
+margin:6px 0;
+background:#090f0b;
+color:#fff;
+border:1px solid #304238;
+border-radius:10px;
+outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#ffd700;
+}
+
+textarea{
+min-height:80px;
+resize:vertical;
+}
+
+label{
+display:block;
+font-size:12px;
+color:#aaa;
+margin-top:9px;
+}
+
+.message{
+display:none;
+padding:11px;
+margin-top:10px;
+border-radius:9px;
+text-align:center;
+background:#073b20;
+color:#00ff91;
+font-size:13px;
+}
+
+.error{
+background:#3b0909!important;
+color:#ff8585!important;
+}
+
+.hide{
+display:none!important;
+}
+
 .badge{
- display:inline-block;padding:5px 8px;border-radius:20px;
- font-size:10px;font-weight:bold;background:#17271e;color:var(--green);
+display:inline-block;
+padding:4px 9px;
+border-radius:20px;
+background:#ffd700;
+color:#000;
+font-size:10px;
+font-weight:bold;
+margin-bottom:8px;
 }
-input,select,textarea{
- width:100%;padding:13px;border-radius:12px;
- border:1px solid var(--border);background:#09100c;
- color:#fff;outline:none;margin-top:8px;
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
 }
-input:focus,select:focus,textarea:focus{border-color:var(--green)}
-label{display:block;margin-top:12px;font-size:12px;color:var(--muted)}
-.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:600px){.formGrid{grid-template-columns:1fr}}
-.orderBox{
- background:linear-gradient(145deg,#111b15,#080d0a);
- border:1px solid #294133;border-radius:20px;padding:17px;
-}
-.payBox{
- display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px
-}
-.pay{
- background:#101a14;border:1px solid var(--border);
- padding:12px;border-radius:13px;
-}
-.pay b{color:var(--gold)}
-.empty{
- text-align:center;padding:25px;color:var(--muted);
- border:1px dashed #294133;border-radius:15px;
-}
-.bottom{
- position:fixed;bottom:0;left:0;right:0;z-index:40;
- background:rgba(5,8,7,.96);border-top:1px solid var(--border);
- display:flex;justify-content:center;
-}
-.nav{
- width:100%;max-width:700px;display:grid;grid-template-columns:repeat(5,1fr);
-}
-.nav button{
- background:none;border:0;color:#82918a;padding:10px 3px;font-size:11px;
-}
-.nav button.active{color:var(--gold)}
-.nav span{display:block;font-size:19px;margin-bottom:2px}
-.modal{
- position:fixed;inset:0;background:rgba(0,0,0,.75);
- display:none;align-items:flex-end;justify-content:center;
- z-index:100;padding:10px;
-}
-.modal.show{display:flex}
-.modalBox{
- width:100%;max-width:650px;max-height:92vh;overflow:auto;
- background:#0a110d;border:1px solid #294133;
- border-radius:23px;padding:18px;
-}
-.modalHead{
- display:flex;justify-content:space-between;align-items:center;margin-bottom:10px
-}
-.close{
- border:0;background:#18241d;color:#fff;width:35px;height:35px;border-radius:50%
-}
-.hidden{display:none!important}
-.status{
- display:inline-block;padding:5px 8px;border-radius:8px;font-size:11px;
- font-weight:bold;background:#302c12;color:#ffe56a;
-}
-.status.Completed{background:#123521;color:#43e78d}
-.status.Cancelled{background:#351515;color:#ff7777}
-.orderItem{
- border:1px solid var(--border);border-radius:15px;padding:13px;margin-top:9px;
-}
-.adminTabs{
- display:flex;gap:7px;overflow:auto;margin-bottom:12px
-}
-.adminTabs button{
- white-space:nowrap;border:1px solid var(--border);
- background:#101a14;color:#aaa;padding:9px 12px;border-radius:10px
-}
-.adminTabs button.active{background:#1b3325;color:var(--gold)}
-.statGrid{
- display:grid;grid-template-columns:repeat(3,1fr);gap:9px
-}
+
 .stat{
- padding:13px;background:#101a14;border:1px solid var(--border);border-radius:13px
+background:#121a15;
+padding:14px 7px;
+border-radius:11px;
+text-align:center;
 }
-.stat b{font-size:22px;color:var(--gold);display:block}
-.small{font-size:11px;color:var(--muted)}
-.toast{
- position:fixed;top:70px;left:50%;transform:translateX(-50%);
- background:#17251d;border:1px solid #33503d;padding:11px 16px;
- border-radius:12px;z-index:200;display:none;max-width:90%;
+
+.stat b{
+display:block;
+color:#ffd700;
+font-size:21px;
+margin-top:4px;
 }
-.toast.show{display:block}
-hr{border:0;border-top:1px solid var(--border);margin:14px 0}
-a{color:var(--green)}
+
+.order-row{
+background:#101813;
+border:1px solid #2b3c31;
+border-radius:12px;
+padding:12px;
+margin-top:9px;
+font-size:12px;
+}
+
+.status{
+display:inline-block;
+padding:5px 8px;
+border-radius:7px;
+background:#493f05;
+color:#ffe96b;
+font-weight:bold;
+margin-top:6px;
+}
+
+.status.Completed{
+background:#0c3d22;
+color:#52ef9b;
+}
+
+.status.Approved{
+background:#0c3d22;
+color:#52ef9b;
+}
+
+.status.Cancelled,
+.status.Rejected{
+background:#420d0d;
+color:#ff7b7b;
+}
+
+.payment-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-top:8px;
+}
+
+.pay{
+padding:12px;
+background:#111a15;
+border:1px solid #293d30;
+border-radius:10px;
+}
+
+.pay b{
+display:block;
+color:#ffd700;
+margin-top:3px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+font-size:11px;
+margin-top:10px;
+}
+
+th,td{
+border:1px solid #2b392f;
+padding:7px;
+text-align:center;
+}
+
+th{
+color:#ffd700;
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#777;
+font-size:12px;
+}
+
+.bottom{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+height:65px;
+background:rgba(4,8,6,.98);
+border-top:1px solid #293b30;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+z-index:50;
+}
+
+.bottom button{
+border:0;
+background:none;
+color:#8d9992;
+font-size:10px;
+cursor:pointer;
+}
+
+.bottom button span{
+display:block;
+font-size:20px;
+margin-bottom:2px;
+}
+
+.bottom button.active{
+color:#ffd700;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.82);
+display:none;
+align-items:flex-end;
+justify-content:center;
+z-index:100;
+padding:10px;
+}
+
+.modal.show{
+display:flex;
+}
+
+.modal-box{
+width:100%;
+max-width:650px;
+max-height:92vh;
+overflow:auto;
+background:#09100c;
+border:1px solid #33493a;
+border-radius:20px;
+padding:17px;
+}
+
+.modal-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+.close{
+width:36px;
+height:36px;
+border:0;
+border-radius:50%;
+background:#1c2820;
+color:#fff;
+font-size:18px;
+cursor:pointer;
+}
+
+.section-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.empty{
+text-align:center;
+padding:20px;
+color:#8b968f;
+border:1px dashed #304238;
+border-radius:11px;
+}
+
+.admin-box{
+border-color:#755f00;
+}
+
+.dev-box{
+border-color:#1d68a8;
+}
+
+.small{
+font-size:11px;
+color:#929d96;
+}
+
+@media(max-width:430px){
+.container{width:96%}
+.card{padding:14px}
+.package button{font-size:12px}
+.package b{font-size:17px}
+.stats{grid-template-columns:repeat(3,1fr)}
+}
 </style>
 </head>
 
 <body>
 
-<header class="header">
- <div class="logo">🐶 KUTTA TOP UP <small>FAST • SECURE • EASY</small></div>
- <div class="userBox">
-   <div id="userName" class="small">Guest</div>
-   <div id="avatar" class="avatar">G</div>
- </div>
+<header>
+<div class="logo">🐶💎</div>
+<h1>KUTTA TOP UP</h1>
+<p>Fast • Secure • Easy</p>
 </header>
 
-<main class="container">
+<div id="notice" class="notice">
+📢 Welcome to KUTTA TOP UP — Fast & Secure Top Up
+</div>
 
-<section id="homePage">
+<div class="container">
 
- <div class="hero">
-   <h1>Welcome to <span>KUTTA TOP UP</span></h1>
-   <p>Free Fire Diamond, Membership ও Like দ্রুত ও সহজে অর্ডার করুন।</p>
-   <div id="notice" class="notice">Loading notice...</div>
- </div>
+<!-- HOME -->
+<section id="home">
 
- <div class="section">
-  <div class="sectionTitle">
-   <h2>💎 Diamond Packages</h2>
-   <span class="badge">TOP UP</span>
-  </div>
-  <div id="packages" class="grid"></div>
- </div>
+<div class="card">
+<h2>🏠 Home / Dashboard</h2>
 
- <div class="section">
-  <div class="sectionTitle">
-   <h2>❤️ Like Packages</h2>
-   <span class="badge">LIKE</span>
-  </div>
-  <div id="likes" class="grid"></div>
- </div>
+<div class="info">
+<span>💎 Diamond</span>
+<span class="value">Fast Delivery</span>
+</div>
 
- <div class="section">
-  <div class="sectionTitle">
-   <h2>🔥 Special Offers</h2>
-   <span class="badge">OFFER</span>
-  </div>
-  <div id="offers" class="grid"></div>
- </div>
+<div class="info">
+<span>👑 Membership</span>
+<span class="value">Weekly / Monthly</span>
+</div>
 
- <div class="section card">
-   <h3>🎁 Special Offer</h3>
-   <p class="muted">আপনার জন্য নতুন অফার দেখতে Login করে Order করুন।</p>
-   <button class="btn gold" onclick="openOrder()">Order Now</button>
- </div>
+<div class="info">
+<span>❤️ Like</span>
+<span class="value">100 / 200+</span>
+</div>
+
+<div class="info">
+<span>🎁 Bonus</span>
+<span class="value">Up to ৳5</span>
+</div>
+
+<button id="supportBtn" class="btn green">
+💬 WhatsApp Support
+</button>
+</div>
+
+
+<!-- DIAMOND -->
+<div class="card">
+<div class="section-title">
+<h2>💎 Diamond Package</h2>
+<span class="badge">POPULAR</span>
+</div>
+
+<div class="package">
+
+<button data-name="25 Diamond" data-price="20">
+💎 25 Diamond
+<b>৳20</b>
+Order Now
+</button>
+
+<button data-name="120 Diamond" data-price="88">
+💎 120 Diamond
+<b>৳88</b>
+Order Now
+</button>
+
+</div>
+</div>
+
+
+<!-- MEMBERSHIP -->
+<div class="card">
+<h2>👑 Weekly / Monthly</h2>
+
+<div class="package">
+
+<button data-name="Weekly Lite" data-price="40">
+🗓️ Weekly Lite
+<b>৳40</b>
+Order Now
+</button>
+
+<button data-name="Weekly" data-price="156">
+👑 Weekly
+<b>৳156</b>
+Order Now
+</button>
+
+<button data-name="Monthly" data-price="770">
+📅 Monthly
+<b>৳770</b>
+Order Now
+</button>
+
+</div>
+</div>
+
+
+<!-- LIKE -->
+<div class="card">
+<h2>❤️ Like Package</h2>
+
+<div class="package">
+
+<button data-name="100 Likes" data-price="8">
+❤️ 100 Likes
+<b>৳8</b>
+Order Now
+</button>
+
+<button data-name="200 Likes" data-price="14">
+❤️ 200 Likes
+<b>৳14</b>
+Order Now
+</button>
+
+</div>
+</div>
+
+
+<!-- OFFER -->
+<div class="card">
+<h2>🎁 Special Offer</h2>
+
+<div class="info">
+<span>🎁 Bonus</span>
+<span class="value">Up to ৳5</span>
+</div>
+
+<div class="info">
+<span>⚡ Delivery</span>
+<span class="value">Fast</span>
+</div>
+
+<div class="info">
+<span>🛡️ Service</span>
+<span class="value">Secure</span>
+</div>
+
+<button id="offerBtn" class="btn green">
+🎁 Ask For Special Offer
+</button>
+</div>
+
+
+<!-- PAYMENT -->
+<div class="card">
+<h2>💳 Payment Information</h2>
+
+<div class="payment-grid">
+
+<div class="pay">
+📱 bKash
+<b>01896223666</b>
+</div>
+
+<div class="pay">
+📱 Nagad
+<b>01701916028</b>
+</div>
+
+</div>
+
+<p class="small" style="margin-top:10px;text-align:center">
+Payment করার আগে number নিশ্চিত করুন।
+</p>
+</div>
+
+
+<!-- PLAYER -->
+<div class="card">
+<h2>🎮 Player Details</h2>
+
+<label>Game</label>
+
+<select id="game">
+<option value="">Select Game</option>
+<option>Free Fire</option>
+<option>Free Fire MAX</option>
+<option>PUBG Mobile</option>
+<option>Mobile Legends</option>
+</select>
+
+<label>Player Name</label>
+<input id="playerName" placeholder="Player Name">
+
+<label>Player ID</label>
+<input id="playerID" placeholder="Player ID">
+
+<button id="savePlayerBtn" class="btn">
+💾 Save Player
+</button>
+
+<div id="playerMsg" class="message"></div>
+</div>
+
+
+<!-- ORDER -->
+<div class="card">
+
+<h2>🛒 Order Now</h2>
+
+<div class="info">
+<span>Selected Package</span>
+<span id="selectedPackage" class="value">None</span>
+</div>
+
+<div class="info">
+<span>Price</span>
+<span class="value">৳<span id="selectedPrice">0</span></span>
+</div>
+
+<label>Payment Method</label>
+
+<select id="payment">
+<option value="">Select Payment Method</option>
+<option>bKash</option>
+<option>Nagad</option>
+</select>
+
+<label>Sender Number</label>
+<input id="sender" placeholder="যে নম্বর থেকে payment করেছেন">
+
+<label>Transaction ID</label>
+<input id="trx" placeholder="Payment Transaction ID">
+
+<button id="orderBtn" class="btn green">
+📱 ORDER NOW → WHATSAPP
+</button>
+
+<div id="orderMsg" class="message"></div>
+
+</div>
+
+
+<!-- TRACK -->
+<div class="card">
+<h2>🔎 Order Tracking</h2>
+
+<input id="trackID" placeholder="Order ID যেমন KT12345678">
+
+<button id="trackBtn" class="btn blue">
+🔍 TRACK ORDER
+</button>
+
+<div id="trackingResult"></div>
+</div>
+
+
+<!-- CUSTOMER -->
+<div class="card">
+<h2>👤 Customer Profile</h2>
+
+<div class="info">
+<span>Customer Serial</span>
+<span id="serial" class="value">Loading...</span>
+</div>
+
+<div class="info">
+<span>Name</span>
+<span id="profileName" class="value">Guest</span>
+</div>
+
+<div class="info">
+<span>Account</span>
+<span id="accountStatus" class="value">Guest</span>
+</div>
+
+<button id="loginBtn" class="btn">
+🔐 Customer Login
+</button>
+
+<button id="logoutBtn" class="btn gray hide">
+🚪 Logout
+</button>
+
+</div>
+
+
+<!-- MY ORDERS -->
+<div class="card">
+<h2>📋 My Order History</h2>
+
+<div id="orders">
+<div class="empty">
+এখনো কোনো Order নেই।
+</div>
+</div>
+</div>
+
+
+<!-- ADMIN -->
+<div class="card admin-box">
+
+<h2>👑 Admin</h2>
+
+<p class="small">
+Admin account দিয়ে website management করুন।
+</p>
+
+<button id="adminOpenBtn" class="btn">
+👑 Open Admin
+</button>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="hide">
+
+<div class="card admin-box">
+
+<h2>👑 Admin Dashboard</h2>
+
+<div class="stats">
+
+<div class="stat">
+Orders
+<b id="totalOrders">0</b>
+</div>
+
+<div class="stat">
+Sales
+<b>৳<span id="totalSales">0</span></b>
+</div>
+
+<div class="stat">
+Pending
+<b id="pendingOrders">0</b>
+</div>
+
+</div>
+
+<hr style="margin:15px 0;border-color:#26382d">
+
+<label>Admin Email</label>
+<input id="adminEmail" placeholder="Admin Gmail">
+
+<button id="adminLoginBtn" class="btn">
+🔐 Admin Login
+</button>
+
+<div id="adminMsg" class="message"></div>
+
+</div>
+
+
+<div id="adminTools" class="hide">
+
+<div class="card admin-box">
+<h2>📦 All Orders</h2>
+
+<div id="adminOrders">
+<div class="empty">No orders.</div>
+</div>
+
+</div>
+
+
+<div class="card admin-box">
+
+<h2>💰 Package Price</h2>
+
+<p class="small">
+নিচের price পরিবর্তন করে Save করলে নতুন price এই browser-এ ব্যবহার হবে।
+</p>
+
+<input id="edit25" type="number" placeholder="25 Diamond">
+<input id="edit120" type="number" placeholder="120 Diamond">
+<input id="editLite" type="number" placeholder="Weekly Lite">
+<input id="editWeekly" type="number" placeholder="Weekly">
+<input id="editMonthly" type="number" placeholder="Monthly">
+<input id="edit100Like" type="number" placeholder="100 Likes">
+<input id="edit200Like" type="number" placeholder="200 Likes">
+
+<button id="savePricesBtn" class="btn">
+💾 SAVE PRICES
+</button>
+
+</div>
+
+
+<div class="card admin-box">
+
+<h2>📢 Website Notice</h2>
+
+<textarea id="editNotice"
+placeholder="Website Notice"></textarea>
+
+<button id="saveNoticeBtn" class="btn">
+💾 SAVE NOTICE
+</button>
+
+</div>
+
+
+<div class="card admin-box">
+
+<h2>📱 WhatsApp Number</h2>
+
+<input id="editWhatsapp" placeholder="WhatsApp number">
+
+<button id="saveWhatsappBtn" class="btn">
+💾 SAVE WHATSAPP
+</button>
+
+</div>
+
+
+<div class="card admin-box">
+
+<h2>🚪 Admin</h2>
+
+<button id="adminLogoutBtn" class="btn red">
+Logout Admin
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DEVELOPER -->
+<div class="card dev-box">
+
+<h2>🛠️ Developer</h2>
+
+<p class="small">
+Developer tools এই device-এ আলাদাভাবে রাখা হয়েছে।
+</p>
+
+<button id="developerBtn" class="btn blue">
+🛠️ Open Developer
+</button>
+
+</div>
+
+
+<div id="developerPanel" class="hide">
+
+<div class="card dev-box">
+
+<h2>🛠️ Developer Dashboard</h2>
+
+<div class="stats">
+
+<div class="stat">
+Orders
+<b id="devOrders">0</b>
+</div>
+
+<div class="stat">
+Sales
+<b>৳<span id="devSales">0</span></b>
+</div>
+
+<div class="stat">
+Status
+<b>ON</b>
+</div>
+
+</div>
+
+<label>Developer Access Code</label>
+<input id="devCode" type="password" placeholder="Developer Code">
+
+<button id="devLoginBtn" class="btn blue">
+Developer Login
+</button>
+
+<div id="devMsg" class="message"></div>
+
+<div id="devTools" class="hide">
+
+<label>Notice</label>
+<textarea id="devNotice"></textarea>
+
+<button id="devNoticeBtn" class="btn">
+SAVE NOTICE
+</button>
+
+<label>Offer</label>
+<input id="devOffer">
+
+<button id="devOfferBtn" class="btn">
+SAVE OFFER
+</button>
+
+<button id="devCloseBtn" class="btn red">
+CLOSE DEVELOPER
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 KUTTA TOP UP<br>
+Fast • Secure • Easy
+</footer>
 
 </section>
 
-<section id="ordersPage" class="hidden">
- <div class="sectionTitle">
-  <h2>📦 My Orders</h2>
- </div>
- <div id="myOrders"></div>
-</section>
+</div>
 
-<section id="trackPage" class="hidden">
- <div class="card">
-  <h2>🔎 Track Order</h2>
-  <p class="muted">আপনার Order ID লিখুন।</p>
-  <input id="trackId" placeholder="যেমন: KT123456">
-  <button class="btn" onclick="trackOrder()">Track Order</button>
-  <div id="trackResult"></div>
- </div>
-</section>
-
-<section id="profilePage" class="hidden">
- <div class="card">
-   <h2>👤 My Profile</h2>
-   <div id="profileInfo" style="margin-top:12px"></div>
-   <button id="loginBtn" class="btn gold" onclick="login()">🔐 Google Login</button>
-   <button id="logoutBtn" class="btn red hidden" onclick="logout()">Logout</button>
- </div>
-</section>
-
-<section id="adminPage" class="hidden">
- <div class="card">
-  <h2>🛠️ Admin Panel</h2>
-  <p class="muted">Only authorized Admin can access.</p>
- </div>
-
- <div class="section">
-  <div id="adminTabs" class="adminTabs">
-   <button onclick="adminTab('dashboard')" class="active">Dashboard</button>
-   <button onclick="adminTab('orders')">Orders</button>
-   <button onclick="adminTab('packages')">Packages</button>
-   <button onclick="adminTab('offers')">Offers</button>
-   <button onclick="adminTab('settings')">Settings</button>
-   <button onclick="adminTab('developers')">Developer</button>
-  </div>
-
-  <div id="adminContent"></div>
- </div>
-</section>
-
-</main>
-
-<nav class="bottom">
- <div class="nav">
-  <button onclick="showPage('homePage')" class="active"><span>🏠</span>Home</button>
-  <button onclick="showPage('ordersPage')"><span>📦</span>Orders</button>
-  <button onclick="showPage('trackPage')"><span>🔎</span>Track</button>
-  <button onclick="openOrder()"><span>🛒</span>Order</button>
-  <button onclick="showPage('profilePage')"><span>👤</span>Profile</button>
- </div>
-</nav>
-
-<div id="toast" class="toast"></div>
 
 <!-- ORDER MODAL -->
 <div id="orderModal" class="modal">
- <div class="modalBox">
-  <div class="modalHead">
-   <h2>🛒 Place Order</h2>
-   <button class="close" onclick="closeOrder()">✕</button>
-  </div>
 
-  <div class="orderBox">
+<div class="modal-box">
 
-   <label>Game</label>
-   <select id="game">
-    <option>Free Fire</option>
-    <option>Free Fire MAX</option>
-    <option>PUBG Mobile</option>
-    <option>Mobile Legends</option>
-   </select>
+<div class="modal-head">
+<h2>🛒 Quick Order</h2>
 
-   <label>Product</label>
-   <select id="product" onchange="updateOrderPrice()"></select>
-
-   <label>Player ID</label>
-   <input id="playerId" placeholder="আপনার Player ID">
-
-   <label>Player Name</label>
-   <input id="playerName" placeholder="Player Name (optional)">
-
-   <label>Payment Method</label>
-   <select id="payment">
-    <option>bKash</option>
-    <option>Nagad</option>
-   </select>
-
-   <div class="payBox">
-    <div class="pay">bKash<br><b id="bkashNo">01896223666</b></div>
-    <div class="pay">Nagad<br><b id="nagadNo">01701916028</b></div>
-   </div>
-
-   <label>Transaction ID</label>
-   <input id="transactionId" placeholder="Payment Transaction ID">
-
-   <label>Coupon / Offer Code</label>
-   <input id="coupon" placeholder="Optional">
-
-   <div style="margin-top:15px">
-    <span class="muted">Total Price</span>
-    <div id="orderPrice" class="price">৳0</div>
-   </div>
-
-   <button class="btn gold" onclick="submitOrder()">✅ Confirm Order</button>
-  </div>
- </div>
+<button id="closeModal" class="close">
+✕
+</button>
 </div>
 
-<script type="module">
+<div class="info">
+<span>Package</span>
+<span id="modalPackage" class="value">None</span>
+</div>
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+<div class="info">
+<span>Price</span>
+<span id="modalPrice" class="value">৳0</span>
+</div>
 
-import {
- getAuth,
- GoogleAuthProvider,
- signInWithPopup,
- onAuthStateChanged,
- signOut
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+<button id="modalContinue" class="btn green">
+Continue to Order
+</button>
 
-import {
- getFirestore,
- collection,
- doc,
- getDoc,
- getDocs,
- setDoc,
- addDoc,
- updateDoc,
- deleteDoc,
- query,
- where,
- orderBy,
- limit
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+</div>
+
+</div>
 
 
-/* ================= FIREBASE CONFIG ================= */
+<!-- BOTTOM NAV -->
+<nav class="bottom">
 
-const firebaseConfig = {
- apiKey:"AIzaSyCM2VkaSnN4T2OzvOIxEBRBMDQDGc5uURg",
- authDomain:"kutta-top-up-71.firebaseapp.com",
- projectId:"kutta-top-up-71",
- storageBucket:"kutta-top-up-71.firebasestorage.app",
- messagingSenderId:"88423684672",
- appId:"1:88423684672:web:1483b271b5796946fe9da5"
-};
+<button data-target="home" class="active">
+<span>🏠</span>
+Home
+</button>
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const provider = new GoogleAuthProvider();
+<button data-target="orders">
+<span>📦</span>
+Orders
+</button>
+
+<button data-target="track">
+<span>🔎</span>
+Track
+</button>
+
+<button id="bottomOrder">
+<span>🛒</span>
+Order
+</button>
+
+<button data-target="profile">
+<span>👤</span>
+Profile
+</button>
+
+</nav>
 
 
-/* ================= SETTINGS ================= */
+<script>
+
+/* =====================================================
+   KUTTA TOP UP
+   SINGLE FILE / NO EXTERNAL LIBRARY REQUIRED
+   ===================================================== */
+
+
+/* ================= CONFIG ================= */
+
+const DEFAULT_WHATSAPP = "8801849609928";
 
 const ADMIN_EMAIL = "md.jafor.shk@gmail.com";
-const WHATSAPP = "8801849609928";
 
-let currentUser = null;
-let currentProfile = null;
-let isAdmin = false;
-let isDeveloper = false;
+/*
+ Developer code:
+ Change this before public launch.
+ This is only a front-end convenience panel,
+ not a secure server-side admin system.
+*/
+const DEVELOPER_CODE = "KTDEV71";
 
-let packages = [];
-let offers = [];
-let settings = {
- notice:"🔥 KUTTA TOP UP — Fast & Secure Top Up",
- bkash:"01896223666",
- nagad:"01701916028",
- whatsapp:WHATSAPP
+
+/* ================= DEFAULT PRICES ================= */
+
+const DEFAULT_PRICES = {
+"25 Diamond":20,
+"120 Diamond":88,
+"Weekly Lite":40,
+"Weekly":156,
+"Monthly":770,
+"100 Likes":8,
+"200 Likes":14
 };
 
 
-/* ================= DEFAULT DATA ================= */
+/* ================= STATE ================= */
 
-const defaultPackages = [
- {id:"diamond25",name:"25 Diamonds",category:"diamond",price:20,active:true},
- {id:"diamond120",name:"120 Diamonds",category:"diamond",price:88,active:true},
- {id:"weeklyLite",name:"Weekly Lite",category:"membership",price:40,active:true},
- {id:"weekly",name:"Weekly",category:"membership",price:156,active:true},
- {id:"monthly",name:"Monthly",category:"membership",price:770,active:true},
- {id:"like100",name:"100 Likes",category:"like",price:8,active:true},
- {id:"like200",name:"200 Likes",category:"like",price:14,active:true}
-];
+let selectedPackage = "";
+let selectedPrice = 0;
 
-const defaultOffers = [
- {id:"offer1",title:"🔥 Special Offer",description:"আজকের বিশেষ অফার — দ্রুত Order করুন।",price:19,active:true}
-];
+let whatsappNumber =
+localStorage.getItem("kutta_whatsapp") ||
+DEFAULT_WHATSAPP;
+
+let prices =
+JSON.parse(
+localStorage.getItem("kutta_prices") ||
+"null"
+) || {...DEFAULT_PRICES};
 
 
 /* ================= HELPERS ================= */
 
-function money(n){
- return "৳"+Number(n||0);
-}
-
-function toast(msg){
- const t=document.getElementById("toast");
- t.textContent=msg;
- t.classList.add("show");
- setTimeout(()=>t.classList.remove("show"),2500);
-}
-
-function esc(x){
- return String(x??"")
- .replaceAll("&","&amp;")
- .replaceAll("<","&lt;")
- .replaceAll(">","&gt;")
- .replaceAll('"',"&quot;")
- .replaceAll("'","&#039;");
-}
-
-window.showPage=function(id){
- document.querySelectorAll("main section").forEach(x=>x.classList.add("hidden"));
- document.getElementById(id).classList.remove("hidden");
-
- if(id==="ordersPage") loadMyOrders();
- if(id==="profilePage") renderProfile();
-
- window.scrollTo({top:0,behavior:"smooth"});
-};
-
-function renderHeader(){
- if(currentUser){
-  document.getElementById("userName").textContent =
-   currentUser.displayName || "User";
-
-  document.getElementById("avatar").textContent =
-   (currentUser.displayName||"U").charAt(0).toUpperCase();
- }else{
-  document.getElementById("userName").textContent="Guest";
-  document.getElementById("avatar").textContent="G";
- }
+function $(id){
+return document.getElementById(id);
 }
 
 
-/* ================= FIRESTORE LOAD ================= */
+function showMessage(id,text,error=false){
 
-async function loadSettings(){
- try{
-  const s=await getDoc(doc(db,"settings","site"));
-  if(s.exists()) settings={...settings,...s.data()};
- }catch(e){console.log(e)}
+const el=$(id);
 
- document.getElementById("notice").textContent=settings.notice;
- document.getElementById("bkashNo").textContent=settings.bkash;
- document.getElementById("nagadNo").textContent=settings.nagad;
-}
+if(!el)return;
 
-async function loadPackages(){
- try{
-  const snap=await getDocs(collection(db,"packages"));
-  packages=snap.docs.map(d=>({id:d.id,...d.data()}));
- }catch(e){
-  packages=[];
- }
+el.textContent=text;
+el.style.display="block";
 
- if(!packages.length) packages=[...defaultPackages];
+el.classList.toggle("error",error);
 
- packages=packages.filter(x=>x.active!==false);
- renderPackages();
-}
+setTimeout(()=>{
+el.style.display="none";
+},4000);
 
-async function loadOffers(){
- try{
-  const snap=await getDocs(collection(db,"offers"));
-  offers=snap.docs.map(d=>({id:d.id,...d.data()}));
- }catch(e){
-  offers=[];
- }
-
- if(!offers.length) offers=[...defaultOffers];
-
- offers=offers.filter(x=>x.active!==false);
- renderOffers();
 }
 
 
-/* ================= RENDER PACKAGES ================= */
+function cleanNumber(n){
 
-function renderPackages(){
+n=String(n||"").replace(/\D/g,"");
 
- const diamond=document.getElementById("packages");
- const likes=document.getElementById("likes");
-
- diamond.innerHTML="";
- likes.innerHTML="";
-
- packages.forEach(p=>{
-  const html=`
-   <div class="card">
-    <div class="badge">${esc(p.category||"PACKAGE")}</div>
-    <h3 style="margin-top:8px">💎 ${esc(p.name)}</h3>
-    <div class="price">${money(p.price)}</div>
-    <p class="muted">Fast Delivery • Secure</p>
-    <button class="btn" onclick="openOrder('${esc(p.id)}')">
-     Order Now
-    </button>
-   </div>
-  `;
-
-  if(p.category==="like") likes.innerHTML+=html;
-  else diamond.innerHTML+=html;
- });
+if(n.startsWith("0")){
+n="88"+n;
 }
 
-function renderOffers(){
+if(n.startsWith("880")){
+return n;
+}
 
- const box=document.getElementById("offers");
- box.innerHTML="";
-
- offers.forEach(o=>{
-  box.innerHTML+=`
-   <div class="card">
-    <div class="badge">SPECIAL OFFER</div>
-    <h3 style="margin-top:8px">🔥 ${esc(o.title)}</h3>
-    <p class="muted">${esc(o.description||"")}</p>
-    <div class="price">${money(o.price)}</div>
-    <button class="btn gold" onclick="openOrder('${esc(o.id)}')">
-      Claim Offer
-    </button>
-   </div>
-  `;
- });
+return n;
 }
 
 
-/* ================= LOGIN ================= */
+function saveOrders(orders){
 
-window.login=async function(){
+localStorage.setItem(
+"kutta_orders",
+JSON.stringify(orders)
+);
 
- try{
-  await signInWithPopup(auth,provider);
- }catch(e){
-  console.error(e);
-  toast("Login failed: "+e.message);
- }
-};
-
-window.logout=async function(){
- try{
-  await signOut(auth);
-  toast("Logged out");
- }catch(e){toast(e.message)}
-};
-
-
-/* ================= CUSTOMER PROFILE ================= */
-
-function makeSerial(uid){
-
- /*
-  Sequential counter-এর জন্য client-side unsafe write দরকার হয়।
-  তাই এখানে UID থেকে stable 6-digit customer serial তৈরি করা হচ্ছে।
-  Format: #ZE000001
- */
-
- let n=0;
-
- for(let i=0;i<uid.length;i++){
-  n=(n*31+uid.charCodeAt(i))%999999;
- }
-
- n=Math.max(1,n);
-
- return "#ZE"+String(n).padStart(6,"0");
-}
-
-async function createProfile(){
-
- if(!currentUser) return;
-
- const ref=doc(db,"users",currentUser.uid);
- const snap=await getDoc(ref);
-
- if(snap.exists()){
-  currentProfile=snap.data();
-  return;
- }
-
- const serial=makeSerial(currentUser.uid);
-
- const data={
-  uid:currentUser.uid,
-  serial:serial,
-  name:currentUser.displayName||"Customer",
-  email:currentUser.email||"",
-  photo:currentUser.photoURL||"",
-  role:"Customer",
-  createdAt:Date.now()
- };
-
- try{
-  await setDoc(ref,data);
-  currentProfile=data;
- }catch(e){
-  console.log("Profile create:",e);
- }
-}
-
-async function checkRole(){
-
- isAdmin=
-  currentUser &&
-  currentUser.email &&
-  currentUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase();
-
- isDeveloper=false;
-
- if(currentUser){
-  try{
-   const d=await getDoc(doc(db,"developers",currentUser.uid));
-
-   if(d.exists()){
-    const data=d.data();
-
-    if(
-     data.enabled===true &&
-     String(data.email||"").toLowerCase()===
-     String(currentUser.email||"").toLowerCase()
-    ){
-     isDeveloper=true;
-    }
-   }
-  }catch(e){}
- }
-
- if(isAdmin || isDeveloper){
-  document.getElementById("adminPage").classList.remove("hidden");
- }
 }
 
 
-/* ================= AUTH STATE ================= */
+function getOrders(){
 
-onAuthStateChanged(auth,async user=>{
+try{
 
- currentUser=user;
+return JSON.parse(
+localStorage.getItem("kutta_orders") ||
+"[]"
+);
 
- renderHeader();
+}catch(e){
 
- if(user){
+return [];
 
-  await createProfile();
-  await checkRole();
+}
 
-  document.getElementById("loginBtn").classList.add("hidden");
-  document.getElementById("logoutBtn").classList.remove("hidden");
+}
 
- }else{
 
-  currentProfile=null;
-  isAdmin=false;
-  isDeveloper=false;
+function makeOrderID(){
 
-  document.getElementById("loginBtn").classList.remove("hidden");
-  document.getElementById("logoutBtn").classList.add("hidden");
- }
+return "KT" +
+Date.now().toString().slice(-8);
+
+}
+
+
+/* ================= SERIAL ================= */
+
+let serial =
+localStorage.getItem("kutta_serial");
+
+if(!serial){
+
+const num =
+Math.floor(
+100000 +
+Math.random()*899999
+);
+
+serial =
+"#ZE"+num;
+
+localStorage.setItem(
+"kutta_serial",
+serial
+);
+
+}
+
+$("serial").textContent=serial;
+
+
+/* ================= PRICE UPDATE ================= */
+
+function updatePricesUI(){
+
+document
+.querySelectorAll(".package button")
+.forEach(btn=>{
+
+const name=btn.dataset.name;
+
+if(prices[name] !== undefined){
+
+btn.dataset.price=prices[name];
+
+const b=btn.querySelector("b");
+
+if(b){
+b.textContent="৳"+prices[name];
+}
+
+}
+
+});
+
+}
+
+
+/* ================= PACKAGE SELECT ================= */
+
+function selectPackage(name,price,button){
+
+selectedPackage=name;
+
+selectedPrice=Number(
+prices[name] !== undefined
+? prices[name]
+: price
+);
+
+$("selectedPackage").textContent=name;
+
+$("selectedPrice").textContent=
+selectedPrice;
+
+document
+.querySelectorAll(".package button")
+.forEach(b=>{
+b.classList.remove("selected");
+});
+
+if(button){
+button.classList.add("selected");
+}
+
+$("modalPackage").textContent=name;
+
+$("modalPrice").textContent=
+"৳"+selectedPrice;
+
+}
+
+
+/* ================= OPEN ORDER ================= */
+
+function openOrder(){
+
+if(!selectedPackage){
+
+showMessage(
+"orderMsg",
+"⚠️ আগে একটি Package নির্বাচন করুন।",
+true
+);
+
+return;
+}
+
+$("orderModal")
+.classList.add("show");
+
+}
+
+
+/* ================= CLOSE ORDER ================= */
+
+function closeOrder(){
+
+$("orderModal")
+.classList.remove("show");
+
+}
+
+
+/* ================= WHATSAPP ================= */
+
+function openWhatsApp(message=""){
+
+const number=cleanNumber(
+whatsappNumber
+);
+
+const text=
+message ||
+"🐶 KUTTA TOP UP\n\nHello, I want to know about your top up service.";
+
+window.open(
+"https://wa.me/"+number+
+"?text="+encodeURIComponent(text),
+"_blank"
+);
+
+}
+
+
+/* ================= PACKAGE BUTTONS ================= */
+
+document
+.querySelectorAll(".package button")
+.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+selectPackage(
+button.dataset.name,
+button.dataset.price,
+button
+);
+
+openOrder();
+
+});
+
 });
 
 
-/* ================= PROFILE ================= */
+/* ================= SAVE PLAYER ================= */
 
-function renderProfile(){
+$("savePlayerBtn")
+.addEventListener("click",()=>{
 
- const box=document.getElementById("profileInfo");
+const name=
+$("playerName").value.trim();
 
- if(!currentUser){
-  box.innerHTML=`
-   <div class="empty">
-    🔐 Google Login করে Profile দেখতে পারবেন।
-   </div>
-  `;
-  return;
- }
+const id=
+$("playerID").value.trim();
 
- box.innerHTML=`
-  <div class="orderItem">
-   <p><span class="muted">Name</span><br><b>${esc(currentUser.displayName)}</b></p>
-   <hr>
-   <p><span class="muted">Email</span><br>${esc(currentUser.email)}</p>
-   <hr>
-   <p><span class="muted">Customer Serial</span><br>
-   <b style="color:var(--gold);font-size:20px">
-   ${esc(currentProfile?.serial||"Loading...")}
-   </b></p>
-   <hr>
-   <p><span class="muted">Role</span><br>
-   <b>${isAdmin?"Admin":isDeveloper?"Developer":"Customer"}</b></p>
-  </div>
- `;
+const game=
+$("game").value;
 
- if(isAdmin){
-  box.innerHTML+=`
-   <button class="btn gold" onclick="showPage('adminPage')">
-    🛠️ Open Admin Panel
-   </button>
-  `;
- }
+if(!name || !id || !game){
+
+showMessage(
+"playerMsg",
+"⚠️ Player Name, ID এবং Game পূরণ করুন।",
+true
+);
+
+return;
+
+}
+
+localStorage.setItem(
+"kutta_player",
+JSON.stringify({
+name,
+id,
+game
+})
+);
+
+showMessage(
+"playerMsg",
+"✅ Player Details Saved"
+);
+
+});
+
+
+/* ================= LOAD PLAYER ================= */
+
+function loadPlayer(){
+
+try{
+
+const p=
+JSON.parse(
+localStorage.getItem(
+"kutta_player"
+) || "null"
+);
+
+if(!p)return;
+
+$("playerName").value=p.name||"";
+$("playerID").value=p.id||"";
+$("game").value=p.game||"";
+
+}catch(e){}
+
+}
+
+loadPlayer();
+
+
+/* ================= ORDER SUBMIT ================= */
+
+$("orderBtn")
+.addEventListener("click",()=>{
+
+if(!selectedPackage){
+
+showMessage(
+"orderMsg",
+"⚠️ আগে Package নির্বাচন করুন।",
+true
+);
+
+return;
+
 }
 
 
-/* ================= ORDER ================= */
+const playerName=
+$("playerName").value.trim();
 
-window.openOrder=function(productId=""){
+const playerID=
+$("playerID").value.trim();
 
- if(!currentUser){
-  toast("আগে Google Login করুন");
-  showPage("profilePage");
-  return;
- }
+const game=
+$("game").value;
 
- document.getElementById("orderModal").classList.add("show");
+const payment=
+$("payment").value;
 
- const select=document.getElementById("product");
- select.innerHTML="";
+const sender=
+$("sender").value.trim();
 
- packages.forEach(p=>{
-  select.innerHTML+=`
-   <option value="${esc(p.id)}">
-    ${esc(p.name)} — ${money(p.price)}
-   </option>
-  `;
- });
+const trx=
+$("trx").value.trim();
 
- offers.forEach(o=>{
-  select.innerHTML+=`
-   <option value="offer:${esc(o.id)}">
-    🔥 ${esc(o.title)} — ${money(o.price)}
-   </option>
-  `;
- });
 
- if(productId){
-  select.value=productId;
+if(!playerName || !playerID || !game){
 
-  if(!select.value && productId){
-   select.value="offer:"+productId
+showMessage(
+"orderMsg",
+"⚠️ Player Details পূরণ করুন।",
+true
+);
+
+return;
+
+}
+
+
+if(!payment || !sen
