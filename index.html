@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-
+<meta name="theme-color" content="#07100b">
 <title>KUTTA TOP UP</title>
 
 <style>
@@ -14,100 +14,86 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   font-family:Arial,"Noto Sans Bengali",sans-serif;
-  background:#07100c;
+  background:
+    radial-gradient(circle at 20% 0%,#173d28 0%,#07110b 34%,#020403 100%);
   color:#fff;
   min-height:100vh;
-  padding-bottom:82px;
+  padding-bottom:78px;
 }
 
-button,
-input,
-select{
-  font-family:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* HEADER */
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
 .header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(5,12,9,.96);
-  border-bottom:1px solid rgba(255,193,7,.15);
-  backdrop-filter:blur(12px);
+  background:rgba(3,9,6,.97);
+  border-bottom:1px solid rgba(255,211,77,.25);
+  backdrop-filter:blur(14px);
 }
 
 .header-inner{
-  max-width:700px;
+  max-width:720px;
   margin:auto;
-  padding:13px 15px;
+  padding:12px 14px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+}
+
+.logo-area{
+  display:flex;
+  align-items:center;
   gap:10px;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
 .logo-icon{
-  width:43px;
-  height:43px;
-  border-radius:14px;
+  width:46px;
+  height:46px;
+  border-radius:15px;
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:23px;
-  background:linear-gradient(135deg,#0e6b3b,#d4a928);
-  box-shadow:0 0 18px rgba(255,193,7,.18);
+  align-items:center;
+  font-size:24px;
+  background:linear-gradient(135deg,#116b3d,#d7ad31);
+  box-shadow:0 0 20px rgba(255,210,60,.15);
 }
 
-.logo-text{
+.logo-title{
   font-size:17px;
   font-weight:900;
-  letter-spacing:.5px;
+  letter-spacing:.4px;
 }
 
 .logo-sub{
+  color:#8f9e96;
   font-size:10px;
-  color:#9caea4;
-  margin-top:2px;
+  margin-top:3px;
 }
 
-.user-box{
+.header-user{
   display:flex;
   align-items:center;
   gap:7px;
-  max-width:145px;
+  max-width:130px;
 }
 
-.user-avatar{
+.header-avatar{
   width:35px;
   height:35px;
   border-radius:50%;
   object-fit:cover;
-  background:#15251c;
-  border:1px solid #354b3d;
+  border:1px solid #435449;
+  background:#142019;
 }
 
-.user-name{
+.header-name{
   font-size:11px;
   font-weight:700;
   overflow:hidden;
@@ -115,12 +101,11 @@ button{
   white-space:nowrap;
 }
 
-/* MAIN */
-
-main{
-  max-width:700px;
+.container{
+  width:94%;
+  max-width:720px;
   margin:auto;
-  padding:14px;
+  padding:15px 0 20px;
 }
 
 .page{
@@ -128,888 +113,920 @@ main{
   animation:fade .2s ease;
 }
 
-.page.active{
-  display:block;
-}
+.page.active{display:block}
 
 @keyframes fade{
-  from{
-    opacity:0;
-    transform:translateY(5px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-/* HERO */
+.card{
+  background:rgba(10,23,15,.96);
+  border:1px solid rgba(214,170,61,.22);
+  border-radius:19px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 8px 28px rgba(0,0,0,.25);
+}
 
 .hero{
+  padding:27px 18px;
   background:
-    radial-gradient(circle at 80% 20%,rgba(255,193,7,.13),transparent 30%),
-    linear-gradient(145deg,#10251a,#08110d);
-  border:1px solid rgba(255,193,7,.17);
-  border-radius:23px;
-  padding:24px 18px;
-  margin-bottom:15px;
-  overflow:hidden;
-  position:relative;
-}
-
-.hero:after{
-  content:"";
-  position:absolute;
-  width:170px;
-  height:170px;
-  right:-70px;
-  top:-70px;
-  border-radius:50%;
-  background:rgba(255,193,7,.06);
+    radial-gradient(circle at 90% 10%,rgba(255,207,57,.15),transparent 35%),
+    linear-gradient(145deg,#12301e,#07100b);
 }
 
 .hero h1{
-  font-size:28px;
-  line-height:1.15;
-  margin-bottom:8px;
+  font-size:29px;
+  line-height:1.2;
 }
 
-.hero h1 span{
-  color:#ffd34d;
-}
+.hero h1 span{color:#ffd54f}
 
 .hero p{
-  color:#aebdb5;
+  color:#aab8b0;
   font-size:13px;
   line-height:1.6;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:9px;
-  margin-top:17px;
-  flex-wrap:wrap;
-}
-
-/* BUTTON */
-
-.btn{
-  border:0;
-  border-radius:13px;
-  padding:12px 16px;
-  font-size:13px;
-  font-weight:800;
-  transition:.15s;
-}
-
-.btn:active{
-  transform:scale(.96);
-}
-
-.btn-primary{
-  background:linear-gradient(135deg,#ffc928,#e6a900);
-  color:#101008;
-}
-
-.btn-secondary{
-  background:#14231b;
-  border:1px solid #294134;
-  color:#fff;
-}
-
-.btn-danger{
-  background:#8e2525;
-  color:#fff;
-}
-
-.btn-green{
-  background:#128a4a;
-  color:#fff;
-}
-
-/* SECTION */
-
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:20px 2px 11px;
-}
-
-.section-title h2{
-  font-size:18px;
-}
-
-.section-title span{
-  color:#82938a;
-  font-size:11px;
-}
-
-/* NOTICE */
-
-.notice{
-  background:#161d12;
-  border:1px solid rgba(255,193,7,.2);
-  border-radius:15px;
-  padding:13px;
-  margin-bottom:15px;
-}
-
-.notice-title{
-  color:#ffd34d;
-  font-weight:900;
-  font-size:13px;
-  margin-bottom:5px;
-}
-
-.notice-text{
-  color:#ccd6d0;
-  font-size:12px;
-  line-height:1.55;
-}
-
-/* PRODUCTS */
-
-.products{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.product{
-  background:linear-gradient(145deg,#101c15,#0b1510);
-  border:1px solid #20382a;
-  border-radius:17px;
-  padding:14px;
-  position:relative;
-}
-
-.product:hover{
-  border-color:#b88c1b;
-}
-
-.product-badge{
-  position:absolute;
-  top:9px;
-  right:9px;
-  font-size:8px;
-  padding:4px 7px;
-  border-radius:8px;
-  background:#604d12;
-  color:#ffe38a;
-  font-weight:900;
-}
-
-.product-icon{
-  font-size:27px;
-  margin-bottom:8px;
-}
-
-.product h3{
-  font-size:14px;
-  margin-bottom:5px;
-}
-
-.product p{
-  font-size:11px;
-  color:#8fa097;
-  min-height:30px;
-  line-height:1.45;
-}
-
-.price{
-  font-size:19px;
-  color:#ffd34d;
-  font-weight:900;
-  margin:10px 0;
-}
-
-.order-btn{
-  width:100%;
-  padding:10px;
-  border:0;
-  border-radius:11px;
-  background:#ffc928;
-  color:#12100a;
-  font-size:12px;
-  font-weight:900;
-}
-
-/* OFFER */
-
-.offer-card{
-  background:linear-gradient(135deg,#241b07,#10160e);
-  border:1px solid rgba(255,193,7,.25);
-  border-radius:17px;
-  padding:15px;
-  margin-bottom:10px;
-}
-
-.offer-card h3{
-  color:#ffd34d;
-  font-size:15px;
-  margin-bottom:5px;
-}
-
-.offer-card p{
-  color:#b9c5be;
-  font-size:12px;
-  line-height:1.5;
-}
-
-/* FORMS */
-
-.card{
-  background:#0d1812;
-  border:1px solid #20382a;
-  border-radius:18px;
-  padding:16px;
-  margin-bottom:13px;
-}
-
-.card h3{
-  margin-bottom:13px;
-  font-size:16px;
-}
-
-.field{
-  margin-bottom:12px;
-}
-
-.field label{
-  display:block;
-  color:#a9b7af;
-  font-size:11px;
-  margin-bottom:6px;
-}
-
-.field input,
-.field select{
-  width:100%;
-  background:#07100c;
-  color:#fff;
-  border:1px solid #294134;
-  outline:0;
-  border-radius:11px;
-  padding:12px;
-  font-size:13px;
-}
-
-.field input:focus,
-.field select:focus{
-  border-color:#d2a526;
-}
-
-/* PAYMENT */
-
-.payment-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-}
-
-.payment{
-  border:1px solid #294134;
-  border-radius:13px;
-  padding:12px;
-  background:#0a130e;
-}
-
-.payment strong{
-  display:block;
-  color:#ffd34d;
-  font-size:13px;
-  margin-bottom:4px;
-}
-
-.payment span{
-  color:#cbd5cf;
-  font-size:12px;
-}
-
-/* ORDER LIST */
-
-.order-item{
-  background:#0c1711;
-  border:1px solid #20382a;
-  border-radius:15px;
-  padding:13px;
-  margin-bottom:9px;
-}
-
-.order-top{
-  display:flex;
-  justify-content:space-between;
-  gap:8px;
-}
-
-.order-id{
-  color:#ffd34d;
-  font-weight:900;
-  font-size:13px;
-}
-
-.status{
-  font-size:9px;
-  padding:5px 8px;
-  border-radius:8px;
-  background:#29351f;
-  color:#e4d36c;
-  font-weight:900;
-}
-
-.status.completed{
-  background:#124e2f;
-  color:#75e4a7;
-}
-
-.status.cancelled{
-  background:#5b2020;
-  color:#ff9b9b;
-}
-
-.order-details{
-  color:#aab8b0;
-  font-size:11px;
-  line-height:1.7;
   margin-top:8px;
 }
 
-/* PROFILE */
-
-.profile{
-  text-align:center;
-  padding:20px 10px;
+.hero-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:17px;
 }
 
-.big-avatar{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid #d3a625;
+h2{
+  color:#ffd54f;
+  font-size:18px;
+  margin-bottom:13px;
+}
+
+h3{
+  font-size:15px;
   margin-bottom:10px;
 }
 
-.profile h2{
-  font-size:20px;
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:20px 2px 11px;
 }
 
-.profile-email{
-  color:#84968c;
-  font-size:11px;
-  margin-top:4px;
+.section-head h2{margin:0}
+
+.section-head span{
+  color:#77877e;
+  font-size:10px;
 }
 
-.serial{
-  display:inline-block;
-  margin-top:10px;
-  background:#171d11;
-  color:#ffd34d;
-  border:1px solid #4b401c;
-  border-radius:10px;
-  padding:7px 11px;
-  font-size:12px;
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:12px 14px;
+  width:100%;
   font-weight:900;
+  font-size:12px;
+  background:linear-gradient(135deg,#ffd34d,#ae7d17);
+  color:#101008;
+  transition:.15s;
 }
 
-/* LOGIN */
+.btn:active{transform:scale(.97)}
 
-.login-box{
-  text-align:center;
-  padding:25px 15px;
+.btn.green{
+  background:linear-gradient(135deg,#2bdc72,#10874e);
+  color:#fff;
 }
 
-.login-box .login-icon{
-  font-size:45px;
-  margin-bottom:10px;
+.btn.blue{
+  background:linear-gradient(135deg,#2995f4,#1859bd);
+  color:#fff;
 }
 
-.login-box h2{
-  margin-bottom:7px;
+.btn.red{
+  background:linear-gradient(135deg,#e34d4d,#8e2020);
+  color:#fff;
 }
 
-.login-box p{
-  color:#94a39b;
+.btn.dark{
+  background:#14241a;
+  border:1px solid #344e3d;
+  color:#fff;
+}
+
+.notice{
+  background:#151e15;
+  border:1px solid rgba(255,211,77,.17);
+  border-left:4px solid #ffd54f;
+  border-radius:11px;
+  padding:12px;
+  color:#ccd6cf;
   font-size:12px;
   line-height:1.6;
-  margin-bottom:17px;
 }
 
-/* ADMIN */
-
-.admin-stat{
+.grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:9px;
 }
 
-.stat{
-  background:#101c15;
-  border:1px solid #243d2d;
-  border-radius:14px;
-  padding:13px;
-}
-
-.stat span{
-  color:#8d9d94;
-  font-size:10px;
-}
-
-.stat strong{
-  display:block;
-  color:#ffd34d;
-  font-size:21px;
-  margin-top:4px;
-}
-
-/* EMPTY */
-
-.empty{
+.package{
+  background:linear-gradient(145deg,#0d2014,#07100b);
+  border:1px solid #294834;
+  border-radius:16px;
+  padding:14px 9px;
   text-align:center;
-  padding:28px 10px;
-  color:#7f9086;
+  transition:.15s;
+}
+
+.package:hover{
+  border-color:#c59b2d;
+  transform:translateY(-2px);
+}
+
+.package-icon{
+  font-size:26px;
+}
+
+.package-name{
+  display:block;
+  font-size:14px;
+  font-weight:900;
+  margin-top:6px;
+}
+
+.package-price{
+  color:#ffd54f;
+  font-size:18px;
+  font-weight:900;
+  margin:8px 0;
+}
+
+.package .btn{
+  padding:10px 7px;
+  font-size:11px;
+}
+
+.offer{
+  background:linear-gradient(135deg,#241c08,#10170f);
+  border:1px solid rgba(255,211,77,.28);
+  border-radius:16px;
+  padding:14px;
+  color:#d2d9d4;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.offer-title{
+  color:#ffd54f;
+  font-size:15px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.field{margin-bottom:11px}
+
+label{
+  display:block;
+  color:#aebbb3;
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  background:#050c07;
+  border:1px solid #304b39;
+  border-radius:11px;
+  color:#fff;
+  outline:none;
+  font-size:13px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#d8ad38;
+}
+
+.payment-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-bottom:12px;
+}
+
+.payment{
+  background:#08140d;
+  border:1px solid #294633;
+  border-radius:13px;
+  padding:12px;
+}
+
+.payment strong{
+  display:block;
+  color:#ffd54f;
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.payment span{
+  color:#d3dbd6;
   font-size:12px;
 }
 
-/* BOTTOM NAV */
-
-.bottom-nav{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:999;
-  height:70px;
-  background:rgba(5,12,9,.98);
-  border-top:1px solid #20382a;
+.user-card{
   display:flex;
-  justify-content:center;
-}
-
-.nav-inner{
-  width:100%;
-  max-width:700px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-}
-
-.nav-btn{
-  border:0;
-  background:transparent;
-  color:#74847b;
-  display:flex;
-  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap:4px;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.user-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.avatar{
+  width:51px;
+  height:51px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #d5aa37;
+}
+
+.user-text{
+  min-width:0;
+}
+
+.user-text strong{
+  display:block;
+  font-size:13px;
+}
+
+.user-text small{
+  display:block;
+  color:#85948c;
   font-size:10px;
-  font-weight:700;
+  margin-top:3px;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-.nav-btn .nav-icon{
+.badge{
+  display:inline-block;
+  margin-top:5px;
+  padding:4px 8px;
+  border-radius:20px;
+  background:#1e3b28;
+  color:#8ef3ac;
+  font-size:9px;
+  font-weight:900;
+}
+
+.order-item{
+  background:#08140d;
+  border:1px solid #294633;
+  border-radius:14px;
+  padding:13px;
+  margin-bottom:9px;
+}
+
+.order-head{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  align-items:center;
+}
+
+.order-id{
+  color:#ffd54f;
+  font-weight:900;
+  font-size:12px;
+}
+
+.status{
+  padding:5px 8px;
+  border-radius:8px;
+  background:#4d4016;
+  color:#ffe58a;
+  font-size:9px;
+  font-weight:900;
+}
+
+.status.completed{
+  background:#124b2c;
+  color:#72e6a0;
+}
+
+.status.cancelled{
+  background:#561f1f;
+  color:#ff9999;
+}
+
+.order-details{
+  color:#aebbb3;
+  font-size:11px;
+  line-height:1.7;
+  margin-top:8px;
+}
+
+.profile-center{text-align:center}
+
+.profile-avatar{
+  width:86px;
+  height:86px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #d8ae3d;
+  margin-bottom:10px;
+}
+
+.profile-center h3{
   font-size:20px;
-  line-height:20px;
+  margin-bottom:4px;
 }
 
-.nav-btn.active{
-  color:#ffd34d;
+.profile-email{
+  color:#83928a;
+  font-size:11px;
 }
 
-/* MODAL */
+.serial{
+  display:inline-block;
+  margin-top:10px;
+  padding:7px 11px;
+  border-radius:10px;
+  border:1px solid #57491f;
+  background:#181c10;
+  color:#ffd54f;
+  font-size:12px;
+  font-weight:900;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.stat{
+  background:#08140d;
+  border:1px solid #294633;
+  border-radius:13px;
+  padding:14px;
+  text-align:center;
+}
+
+.stat small{
+  display:block;
+  color:#87958d;
+  font-size:10px;
+}
+
+.stat b{
+  display:block;
+  color:#ffd54f;
+  font-size:21px;
+  margin-top:5px;
+}
+
+.table-wrap{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:550px;
+  font-size:10px;
+}
+
+th,td{
+  border:1px solid #294633;
+  padding:7px 5px;
+  text-align:center;
+}
+
+th{color:#ffd54f}
+
+.status-select{
+  padding:6px;
+  font-size:10px;
+  width:auto;
+}
+
+.empty{
+  text-align:center;
+  color:#78877f;
+  padding:25px 10px;
+  font-size:12px;
+}
+
+.error-box{
+  display:none;
+  background:#351010;
+  border:1px solid #e34d4d;
+  color:#ffb1b1;
+  padding:12px;
+  border-radius:11px;
+  margin-bottom:13px;
+  font-size:11px;
+  line-height:1.6;
+  white-space:pre-wrap;
+}
+
+.success{
+  color:#65e99a;
+}
 
 .modal{
+  display:none;
   position:fixed;
   inset:0;
-  z-index:2000;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
+  z-index:1000;
+  background:rgba(0,0,0,.82);
+  padding:14px;
+  overflow:auto;
 }
 
 .modal.show{
   display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .modal-box{
   width:100%;
-  max-width:700px;
-  max-height:92vh;
+  max-width:510px;
+  max-height:94vh;
   overflow:auto;
-  background:#0b1510;
-  border:1px solid #2c4435;
-  border-radius:23px 23px 0 0;
-  padding:18px;
-  animation:up .2s ease;
-}
-
-@keyframes up{
-  from{
-    transform:translateY(100%);
-  }
-  to{
-    transform:translateY(0);
-  }
+  background:#09150d;
+  border:1px solid #d4a93c;
+  border-radius:20px;
+  padding:17px;
 }
 
 .modal-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:15px;
 }
 
-.modal-head h2{
+.modal-head h2{margin:0}
+
+.close{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:50%;
+  background:#391616;
+  color:#fff;
   font-size:18px;
 }
 
-.close{
-  width:35px;
-  height:35px;
-  border:0;
-  border-radius:50%;
-  background:#18251d;
-  color:#fff;
-  font-size:20px;
-}
-
-/* TOAST */
-
-.toast{
+.bottom{
   position:fixed;
-  left:50%;
-  bottom:84px;
-  transform:translateX(-50%) translateY(20px);
-  background:#15241b;
-  border:1px solid #35523f;
-  color:#fff;
-  padding:11px 15px;
-  border-radius:12px;
-  font-size:11px;
-  z-index:5000;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  max-width:90%;
+  left:0;
+  right:0;
+  bottom:0;
+  height:69px;
+  z-index:500;
+  display:flex;
+  justify-content:center;
+  background:rgba(3,9,6,.98);
+  border-top:1px solid #294633;
+}
+
+.bottom-inner{
+  width:100%;
+  max-width:720px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.bottom button{
+  border:0;
+  background:transparent;
+  color:#77867e;
+  font-size:10px;
+  font-weight:700;
+}
+
+.bottom button span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.bottom button.active{
+  color:#ffd54f;
+}
+
+footer{
   text-align:center;
+  color:#5f6e65;
+  font-size:10px;
+  padding:15px;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
-/* RESPONSIVE */
-
-@media(max-width:420px){
-  .products{
-    gap:8px;
-  }
-
-  .product{
-    padding:12px;
-  }
-
-  .hero h1{
-    font-size:25px;
-  }
-
-  .payment-grid{
-    grid-template-columns:1fr;
-  }
+@media(max-width:430px){
+  .container{width:96%}
+  .grid{gap:7px}
+  .package{padding:12px 7px}
+  .package-name{font-size:13px}
+  .hero h1{font-size:25px}
+  .hero-buttons{grid-template-columns:1fr}
+  .payment-box{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
+<header>
   <div class="header-inner">
 
-    <div class="logo">
+    <div class="logo-area">
       <div class="logo-icon">🐶💎</div>
+
       <div>
-        <div class="logo-text">KUTTA TOP UP</div>
+        <div class="logo-title">KUTTA TOP UP</div>
         <div class="logo-sub">Fast • Secure • Easy</div>
       </div>
     </div>
 
-    <div class="user-box" id="headerUser">
-      <img id="headerAvatar" class="user-avatar"
-           src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
-      <span id="headerName" class="user-name">Guest</span>
+    <div class="header-user">
+      <img
+        id="headerAvatar"
+        class="header-avatar"
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt="user">
+
+      <span id="headerName" class="header-name">Guest</span>
     </div>
 
   </div>
 </header>
 
 
-<main>
+<div class="container">
 
-<!-- HOME -->
+<div id="firebaseError" class="error-box"></div>
+
+
+<!-- ================= HOME ================= -->
+
 <section id="page-home" class="page active">
 
-  <div class="hero">
-    <h1>Welcome to <span>KUTTA TOP UP</span></h1>
+  <div class="card hero">
+
+    <h1>
+      Welcome to <span>KUTTA TOP UP</span>
+    </h1>
+
     <p>
-      Free Fire Diamond, Weekly, Monthly এবং Like দ্রুত ও সহজে অর্ডার করুন।
+      Free Fire Diamond, Weekly, Monthly এবং Like
+      দ্রুত ও সহজে অর্ডার করুন।
     </p>
 
     <div class="hero-buttons">
-      <button class="btn btn-primary" onclick="openOrderByName('25 Diamond')">
+
+      <button class="btn" onclick="openOrder('25 Diamond')">
         💎 Order Now
       </button>
 
-      <button class="btn btn-secondary" onclick="goPage('orders')">
+      <button class="btn dark" onclick="goPage('orders')">
         📦 My Orders
       </button>
+
     </div>
+
   </div>
 
-  <div class="notice">
-    <div class="notice-title">📢 Notice</div>
-    <div id="noticeText" class="notice-text">
+
+  <div id="userCard" class="card hidden"></div>
+
+
+  <div class="card">
+
+    <h2>📢 Notice</h2>
+
+    <div id="noticeBox" class="notice">
       KUTTA TOP UP-এ আপনাকে স্বাগতম।
     </div>
+
   </div>
 
-  <div class="section-title">
+
+  <div class="section-head">
     <h2>💎 Diamond & Package</h2>
     <span>Order Now</span>
   </div>
 
-  <div id="productList" class="products"></div>
+  <div id="packageList" class="grid"></div>
 
-  <div class="section-title">
+
+  <div class="section-head">
     <h2>🎁 Special Offer</h2>
     <span>Limited</span>
   </div>
 
-  <div id="offerList"></div>
+  <div id="offerBox" class="offer">
+    <div class="offer-title">🔥 Special Offer</div>
+    Special Offer Coming Soon!
+  </div>
+
+
+  <div class="section-head">
+    <h2>❤️ Like Service</h2>
+    <span>Fast Delivery</span>
+  </div>
+
+  <div id="likeList" class="grid"></div>
+
+
+  <div class="card">
+
+    <h2>📞 Contact Us</h2>
+
+    <button class="btn green" onclick="openWhatsAppSupport()">
+      💬 WhatsApp Support
+    </button>
+
+  </div>
 
 </section>
 
 
-<!-- ORDER -->
-<section id="page-order" class="page">
+<!-- ================= ORDERS ================= -->
 
-  <div class="section-title">
-    <h2>🛒 New Order</h2>
-    <span>KUTTA TOP UP</span>
-  </div>
-
-  <div class="card">
-
-    <h3>🎮 Player Information</h3>
-
-    <div class="field">
-      <label>Game</label>
-
-      <select id="game">
-        <option>Free Fire</option>
-        <option>Free Fire MAX</option>
-        <option>PUBG Mobile</option>
-        <option>Mobile Legends</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Player ID</label>
-      <input id="playerId" type="text" placeholder="আপনার Player ID">
-    </div>
-
-    <div class="field">
-      <label>Player Name (Optional)</label>
-      <input id="playerName" type="text" placeholder="Player Name">
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>💎 Select Package</h3>
-
-    <div class="field">
-      <label>Package</label>
-
-      <select id="orderProduct"></select>
-    </div>
-
-    <div id="selectedPrice"
-         style="color:#ffd34d;font-size:20px;font-weight:900;margin:8px 0 3px;">
-      ৳0
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>💳 Payment</h3>
-
-    <div class="payment-grid">
-
-      <div class="payment">
-        <strong>bKash</strong>
-        <span id="bkashNumber">01896223666</span>
-      </div>
-
-      <div class="payment">
-        <strong>Nagad</strong>
-        <span id="nagadNumber">01701916028</span>
-      </div>
-
-    </div>
-
-    <br>
-
-    <div class="field">
-      <label>Payment Method</label>
-
-      <select id="paymentMethod">
-        <option value="bKash">bKash</option>
-        <option value="Nagad">Nagad</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Transaction ID</label>
-      <input id="transactionId"
-             type="text"
-             placeholder="Transaction ID দিন">
-    </div>
-
-  </div>
-
-
-  <button class="btn btn-primary"
-          style="width:100%;"
-          onclick="submitOrder()">
-    ✅ Confirm Order
-  </button>
-
-</section>
-
-
-<!-- ORDERS -->
 <section id="page-orders" class="page">
 
-  <div class="section-title">
+  <div class="card">
+
     <h2>📦 My Orders</h2>
-    <span id="orderCount">0 Orders</span>
+
+    <div id="ordersList">
+      <div class="empty">
+        Google Login করুন, তারপর আপনার Order এখানে দেখা যাবে।
+      </div>
+    </div>
+
   </div>
 
-  <div id="ordersList"></div>
 
   <div class="card">
 
-    <h3>🔎 Track Order</h3>
+    <h2>🔎 Track Order</h2>
 
     <div class="field">
+
       <label>Order ID</label>
-      <input id="trackOrderId"
-             placeholder="যেমন KT000001">
+
+      <input
+        id="trackId"
+        placeholder="যেমন KT-12345678">
+
     </div>
 
-    <button class="btn btn-secondary"
-            style="width:100%;"
-            onclick="trackOrder()">
-      🔎 Track
+    <button class="btn blue" onclick="trackOrder()">
+      🔍 Track Order
     </button>
 
-    <div id="trackResult" style="margin-top:12px;"></div>
+    <div id="trackingResult" style="margin-top:12px"></div>
 
   </div>
 
 </section>
 
 
-<!-- PROFILE -->
+<!-- ================= PROFILE ================= -->
+
 <section id="page-profile" class="page">
 
-  <div id="guestProfile" class="card login-box">
+  <div id="guestProfile" class="card">
 
-    <div class="login-icon">🔐</div>
+    <div class="profile-center">
 
-    <h2>Login Required</h2>
+      <div style="font-size:48px;margin-bottom:10px">
+        🔐
+      </div>
 
-    <p>
-      Google account দিয়ে login করলে Customer Profile,
-      Serial Number এবং Order History ব্যবহার করতে পারবেন।
-    </p>
+      <h2>Customer Login</h2>
 
-    <button class="btn btn-primary"
-            style="width:100%;"
-            onclick="googleLogin()">
-      🔵 Continue with Google
-    </button>
+      <p class="muted" style="line-height:1.7;margin-bottom:15px">
+        Google account দিয়ে Login করলে
+        Profile এবং Order History ব্যবহার করতে পারবেন।
+      </p>
+
+      <button class="btn" onclick="googleLogin()">
+        🔵 Continue with Google
+      </button>
+
+    </div>
 
   </div>
 
 
-  <div id="loggedProfile" class="card profile hidden">
+  <div id="loggedProfile" class="card hidden">
 
-    <img id="profileAvatar"
-         class="big-avatar"
-         src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+    <div class="profile-center">
 
-    <h2 id="profileName">Customer</h2>
+      <img
+        id="profileAvatar"
+        class="profile-avatar"
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
 
-    <div id="profileEmail" class="profile-email">
-      -
+      <h3 id="profileName">Customer</h3>
+
+      <div id="profileEmail" class="profile-email">
+        -
+      </div>
+
+      <div id="profileSerial" class="serial">
+        #ZE000000
+      </div>
+
+      <br><br>
+
+      <button
+        class="btn red"
+        style="max-width:220px"
+        onclick="logout()">
+
+        🚪 Logout
+
+      </button>
+
     </div>
-
-    <div id="profileSerial" class="serial">
-      #ZE000000
-    </div>
-
-    <br><br>
-
-    <button class="btn btn-danger"
-            onclick="logout()">
-      🚪 Logout
-    </button>
 
   </div>
 
 
-  <div id="adminPanel" class="hidden">
+  <!-- ADMIN -->
 
-    <div class="section-title">
+  <div id="adminArea" class="hidden">
+
+    <div class="section-head">
+
       <h2>👑 Admin Panel</h2>
-      <span>Admin</span>
-    </div>
 
-    <div class="admin-stat">
-
-      <div class="stat">
-        <span>Total Orders</span>
-        <strong id="adminOrders">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>Customers</span>
-        <strong id="adminCustomers">0</strong>
-      </div>
+      <span>Administrator</span>
 
     </div>
 
-    <br>
 
     <div class="card">
 
-      <h3>📢 Notice</h3>
+      <div class="stat-grid">
 
-      <div class="field">
-        <input id="adminNotice"
-               placeholder="Website Notice">
+        <div class="stat">
+
+          <small>Total Orders</small>
+
+          <b id="adminTotalOrders">0</b>
+
+        </div>
+
+        <div class="stat">
+
+          <small>Total Sales</small>
+
+          <b>৳<span id="adminTotalSales">0</span></b>
+
+        </div>
+
       </div>
 
-      <button class="btn btn-primary"
-              onclick="saveNotice()">
+    </div>
+
+
+    <div class="card">
+
+      <h2>📦 All Orders</h2>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Order</th>
+              <th>Package</th>
+              <th>Player</th>
+              <th>৳</th>
+              <th>Status</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="adminOrderList"></tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>💳 Payment Settings</h2>
+
+      <div class="field">
+
+        <label>bKash Number</label>
+
+        <input id="adminBkash">
+
+      </div>
+
+      <div class="field">
+
+        <label>Nagad Number</label>
+
+        <input id="adminNagad">
+
+      </div>
+
+      <button class="btn" onclick="savePaymentSettings()">
+        💾 Save Payment
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>💎 Package Prices</h2>
+
+      <div class="field">
+        <label>25 Diamond</label>
+        <input id="price25" type="number">
+      </div>
+
+      <div class="field">
+        <label>120 Diamond</label>
+        <input id="price120" type="number">
+      </div>
+
+      <div class="field">
+        <label>Weekly Lite</label>
+        <input id="priceLite" type="number">
+      </div>
+
+      <div class="field">
+        <label>Weekly</label>
+        <input id="priceWeekly" type="number">
+      </div>
+
+      <div class="field">
+        <label>Monthly</label>
+        <input id="priceMonthly" type="number">
+      </div>
+
+      <div class="field">
+        <label>100 Likes</label>
+        <input id="price100" type="number">
+      </div>
+
+      <div class="field">
+        <label>200 Likes</label>
+        <input id="price200" type="number">
+      </div>
+
+      <button class="btn" onclick="savePrices()">
+        💾 Save Prices
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>📢 Website Notice</h2>
+
+      <textarea
+        id="adminNotice"
+        placeholder="Website Notice লিখুন">
+      </textarea>
+
+      <button class="btn" onclick="saveNotice()">
         💾 Save Notice
       </button>
 
@@ -1018,31 +1035,16 @@ main{
 
     <div class="card">
 
-      <h3>💳 Payment Numbers</h3>
+      <h2>🎁 Special Offer</h2>
 
-      <div class="field">
-        <label>bKash</label>
-        <input id="adminBkash">
-      </div>
+      <textarea
+        id="adminOffer"
+        placeholder="যেমন: 🔥 100 Like মাত্র ৳8">
+      </textarea>
 
-      <div class="field">
-        <label>Nagad</label>
-        <input id="adminNagad">
-      </div>
-
-      <button class="btn btn-primary"
-              onclick="savePaymentSettings()">
-        💾 Save
+      <button class="btn" onclick="saveOffer()">
+        💾 Save Offer
       </button>
-
-    </div>
-
-
-    <div class="card">
-
-      <h3>📦 Recent Orders</h3>
-
-      <div id="adminOrderList"></div>
 
     </div>
 
@@ -1050,49 +1052,11 @@ main{
 
 </section>
 
-</main>
+
+</div>
 
 
-<!-- BOTTOM NAV -->
-
-<nav class="bottom-nav">
-
-  <div class="nav-inner">
-
-    <button class="nav-btn active"
-            data-page="home"
-            onclick="goPage('home')">
-      <div class="nav-icon">🏠</div>
-      <div>Home</div>
-    </button>
-
-    <button class="nav-btn"
-            data-page="order"
-            onclick="goPage('order')">
-      <div class="nav-icon">🛒</div>
-      <div>Order</div>
-    </button>
-
-    <button class="nav-btn"
-            data-page="orders"
-            onclick="goPage('orders')">
-      <div class="nav-icon">📦</div>
-      <div>Orders</div>
-    </button>
-
-    <button class="nav-btn"
-            data-page="profile"
-            onclick="goPage('profile')">
-      <div class="nav-icon">👤</div>
-      <div>Profile</div>
-    </button>
-
-  </div>
-
-</nav>
-
-
-<!-- ORDER MODAL -->
+<!-- ================= ORDER MODAL ================= -->
 
 <div id="orderModal" class="modal">
 
@@ -1100,44 +1064,205 @@ main{
 
     <div class="modal-head">
 
-      <h2>🛒 Order</h2>
+      <h2>🛒 Order Now</h2>
 
-      <button class="close"
-              onclick="closeModal()">
-        ×
+      <button class="close" onclick="closeOrder()">
+        ✕
       </button>
 
     </div>
 
-    <div class="field">
-      <label>Selected Package</label>
 
-      <input id="modalProduct"
-             readonly>
+    <div class="notice">
+
+      <b id="orderPackage">Package</b>
+
+      <br>
+
+      Price:
+      <strong id="orderPrice">৳0</strong>
+
     </div>
 
-    <div class="field">
-      <label>Price</label>
+    <br>
 
-      <input id="modalPrice"
-             readonly>
+
+    <div class="field">
+
+      <label>🎮 Game</label>
+
+      <select id="orderGame">
+
+        <option>Free Fire</option>
+        <option>Free Fire MAX</option>
+        <option>PUBG Mobile</option>
+        <option>Mobile Legends</option>
+
+      </select>
+
     </div>
 
-    <button class="btn btn-primary"
-            style="width:100%;"
-            onclick="continueToOrder()">
-      Continue →
+
+    <div class="field">
+
+      <label>🆔 Player ID</label>
+
+      <input
+        id="orderPlayerId"
+        placeholder="আপনার Player ID">
+
+    </div>
+
+
+    <div class="field">
+
+      <label>👤 Player Name</label>
+
+      <input
+        id="orderPlayerName"
+        placeholder="Player Name">
+
+    </div>
+
+
+    <div class="field">
+
+      <label>💳 Payment Method</label>
+
+      <select id="orderPayment">
+
+        <option value="bKash">bKash</option>
+        <option value="Nagad">Nagad</option>
+
+      </select>
+
+    </div>
+
+
+    <div class="payment-box">
+
+      <div class="payment">
+
+        <strong>bKash</strong>
+
+        <span id="bkashNumber">
+          01896223666
+        </span>
+
+      </div>
+
+
+      <div class="payment">
+
+        <strong>Nagad</strong>
+
+        <span id="nagadNumber">
+          01701916028
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>📱 Sender Number</label>
+
+      <input
+        id="orderSender"
+        type="tel"
+        placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন">
+
+    </div>
+
+
+    <div class="field">
+
+      <label>🧾 Transaction ID</label>
+
+      <input
+        id="orderTrx"
+        placeholder="Transaction ID">
+
+    </div>
+
+
+    <button class="btn green" onclick="submitOrder()">
+      📱 CONFIRM & ORDER ON WHATSAPP
     </button>
+
+
+    <div
+      id="orderMessage"
+      style="margin-top:10px">
+    </div>
 
   </div>
 
 </div>
 
 
-<div id="toast" class="toast"></div>
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom">
+
+  <div class="bottom-inner">
+
+    <button
+      id="navHome"
+      class="active"
+      onclick="goPage('home')">
+
+      <span>🏠</span>
+      Home
+
+    </button>
 
 
-<!-- FIREBASE -->
+    <button
+      id="navOrders"
+      onclick="goPage('orders')">
+
+      <span>📦</span>
+      Orders
+
+    </button>
+
+
+    <button
+      id="navProfile"
+      onclick="goPage('profile')">
+
+      <span>👤</span>
+      Profile
+
+    </button>
+
+
+    <button
+      id="navAdmin"
+      class="hidden"
+      onclick="goPage('admin')">
+
+      <span>👑</span>
+      Admin
+
+    </button>
+
+  </div>
+
+</nav>
+
+
+<footer>
+© 2026 KUTTA TOP UP
+<br>
+Fast • Secure • Easy
+</footer>
+
+
+<!-- ================= FIREBASE ================= -->
 
 <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
@@ -1156,115 +1281,4 @@ const firebaseConfig = {
   projectId:"kutta-top-up-71",
   storageBucket:"kutta-top-up-71.firebasestorage.app",
   messagingSenderId:"88423684672",
-  appId:"1:88423684672:web:1483b271b5796946fe9da5"
-};
-
-
-/* =====================================================
-   FIREBASE START
-===================================================== */
-
-let firebaseReady=false;
-let auth=null;
-let db=null;
-
-try{
-
-  firebase.initializeApp(firebaseConfig);
-
-  auth=firebase.auth();
-  db=firebase.firestore();
-
-  firebaseReady=true;
-
-}catch(error){
-
-  console.error("Firebase error:",error);
-
-}
-
-
-/* =====================================================
-   CONSTANTS
-===================================================== */
-
-const ADMIN_EMAIL="md.jafor.shk@gmail.com";
-
-const WHATSAPP="8801849609928";
-
-let currentUser=null;
-let currentProfile=null;
-
-let selectedProduct=null;
-
-
-/* =====================================================
-   DEFAULT PRODUCTS
-===================================================== */
-
-const defaultProducts=[
-
-  {
-    id:"diamond25",
-    name:"25 Diamond",
-    price:20,
-    icon:"💎",
-    description:"25 Free Fire Diamond"
-  },
-
-  {
-    id:"diamond120",
-    name:"120 Diamond",
-    price:88,
-    icon:"💎",
-    description:"120 Free Fire Diamond"
-  },
-
-  {
-    id:"weeklyLite",
-    name:"Weekly Lite",
-    price:40,
-    icon:"⚡",
-    description:"Weekly Lite Membership"
-  },
-
-  {
-    id:"weekly",
-    name:"Weekly",
-    price:156,
-    icon:"🔥",
-    description:"Weekly Membership"
-  },
-
-  {
-    id:"monthly",
-    name:"Monthly",
-    price:770,
-    icon:"👑",
-    description:"Monthly Membership"
-  },
-
-  {
-    id:"like100",
-    name:"100 Likes",
-    price:8,
-    icon:"❤️",
-    description:"100 Likes"
-  },
-
-  {
-    id:"like200",
-    name:"200 Likes",
-    price:14,
-    icon:"❤️",
-    description:"200 Likes"
-  }
-
-];
-
-
-let products=[...defaultProducts];
-
-
-/* =====================================================
-   DEFAULT SETTINGS
+  appId:"1:884
