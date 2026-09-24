@@ -2,10 +2,12 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>KUTTA TOP UP</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -23,42 +25,51 @@ header{
   background:#0d111d;
   border-bottom:1px solid #252b3b;
   padding:14px 18px;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.nav{
+.header-inner{
   max-width:950px;
   margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:10px;
 }
 
 .logo{
   display:flex;
   align-items:center;
   gap:10px;
+  font-size:21px;
+  font-weight:bold;
+  color:#ffc400;
 }
 
 .logoIcon{
-  width:48px;
-  height:48px;
+  width:46px;
+  height:46px;
   border-radius:50%;
   background:linear-gradient(135deg,#ffc400,#ff8a00);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:23px;
+  font-size:24px;
+  box-shadow:0 0 18px rgba(255,196,0,.25);
 }
 
-.logoText{
+.logoText small{
+  display:block;
   color:#ffc400;
-  font-size:20px;
-  font-weight:bold;
+  font-size:9px;
+  letter-spacing:2px;
+  margin-top:2px;
 }
 
-.fast{
-  color:#999;
-  font-size:9px;
+.status{
+  font-size:14px;
 }
 
 .container{
@@ -71,7 +82,7 @@ header{
   background:linear-gradient(135deg,#181d30,#0d1019);
   border:1px solid #252b3b;
   border-radius:24px;
-  padding:30px 20px;
+  padding:28px 20px;
   text-align:center;
   margin-bottom:20px;
 }
@@ -79,10 +90,11 @@ header{
 .hero h1{
   color:#ffc400;
   margin-bottom:8px;
+  font-size:30px;
 }
 
 .hero p{
-  color:#aeb5c7;
+  color:#b9bfd0;
 }
 
 .card{
@@ -95,357 +107,619 @@ header{
 
 .card h2{
   color:#ffc400;
-  font-size:19px;
   margin-bottom:15px;
+  font-size:21px;
 }
 
-button{
-  border:0;
+.login-area{
+  text-align:center;
+}
+
+.google-btn{
+  width:100%;
+  max-width:400px;
+  border:none;
   border-radius:12px;
-  padding:13px 18px;
+  padding:14px;
+  background:#fff;
+  color:#111;
+  font-size:16px;
   font-weight:bold;
   cursor:pointer;
 }
 
-.google{
-  width:100%;
-  background:#fff;
-  color:#222;
-  font-size:15px;
-}
-
-.logout{
-  background:#252b3b;
-  color:#fff;
+.google-btn:hover{
+  opacity:.9;
 }
 
 .profile{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  gap:14px;
+  text-align:left;
+  flex-wrap:wrap;
 }
 
-.user{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.user img{
-  width:45px;
-  height:45px;
+.profile img{
+  width:58px;
+  height:58px;
   border-radius:50%;
   border:2px solid #ffc400;
 }
 
-.email{
-  color:#8f98aa;
-  font-size:12px;
-  margin-top:3px;
+.profile-info{
+  flex:1;
+  min-width:180px;
+}
+
+.profile-info strong{
+  display:block;
+  color:#ffc400;
+  margin-bottom:5px;
+}
+
+.profile-info span{
+  color:#aeb5c8;
+  font-size:13px;
+  word-break:break-all;
+}
+
+.logout{
+  background:#222938;
+  color:#fff;
+  border:1px solid #394154;
+  border-radius:10px;
+  padding:10px 15px;
+  cursor:pointer;
+}
+
+.balance{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(135deg,#171c2c,#101522);
+  border:1px solid #343b50;
+  border-radius:16px;
+  padding:18px;
+}
+
+.balance strong{
+  color:#ffc400;
+  font-size:25px;
 }
 
 input{
   width:100%;
-  background:#080b14;
-  color:#fff;
-  border:1px solid #30374b;
-  border-radius:12px;
   padding:14px;
-  margin:8px 0 12px;
+  border-radius:12px;
+  border:1px solid #30384d;
+  background:#080b13;
+  color:#fff;
   outline:none;
+  font-size:16px;
+  margin-bottom:10px;
 }
 
-.check,
-.order{
+input:focus{
+  border-color:#ffc400;
+}
+
+.yellow-btn{
   width:100%;
-  background:linear-gradient(135deg,#ffc400,#ff8a00);
-  color:#080b14;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:#ffc400;
+  color:#111;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.yellow-btn:hover{
+  background:#ffcf28;
+}
+
+.yellow-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.uid-result,
+.order-result{
+  display:none;
+  margin-top:15px;
+  background:#111827;
+  border:1px solid #30384d;
+  border-radius:14px;
+  padding:15px;
+}
+
+.result-line{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:7px 0;
+  border-bottom:1px solid #252b3b;
+}
+
+.result-line:last-child{
+  border-bottom:0;
+}
+
+.result-line span:first-child{
+  color:#9ea7bb;
+}
+
+.result-line span:last-child{
+  color:#ffc400;
+  font-weight:bold;
+  text-align:right;
 }
 
 .packages{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  gap:12px;
 }
 
 .package{
-  background:#111728;
-  border:1px solid #30374b;
+  background:#111625;
+  border:1px solid #30384d;
   border-radius:15px;
-  padding:15px 8px;
+  padding:17px 10px;
   text-align:center;
   cursor:pointer;
+  transition:.2s;
+}
+
+.package:hover{
+  border-color:#ffc400;
+  transform:translateY(-2px);
 }
 
 .package.active{
   border-color:#ffc400;
-  background:#1a1d28;
+  background:#201c0b;
+  box-shadow:0 0 15px rgba(255,196,0,.12);
 }
 
-.diamond{
-  color:#61d9ff;
+.package .diamond{
+  color:#55c7ff;
+  font-size:21px;
   font-weight:bold;
 }
 
-.price{
+.package .price{
   color:#ffc400;
-  margin-top:5px;
-  font-size:14px;
+  margin-top:8px;
+  font-weight:bold;
 }
 
-.balance{
-  background:#111728;
-  border:1px solid #30374b;
-  border-radius:15px;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-}
-
-.balance strong{
+.selected{
+  margin:15px 0;
+  background:#111625;
+  padding:13px;
+  border-radius:12px;
   color:#ffc400;
+  text-align:center;
 }
 
-.result{
+.error-box{
   display:none;
-  background:#101829;
-  border:1px solid #2d405c;
-  border-radius:15px;
-  padding:15px;
   margin-top:15px;
-  line-height:1.8;
+  padding:13px;
+  border-radius:12px;
+  background:#351318;
+  border:1px solid #8f3340;
+  color:#ff9da7;
+  font-size:13px;
+  text-align:left;
+  word-break:break-word;
 }
 
-.success{
-  color:#4cff9b;
-  font-weight:bold;
-}
-
-.serial{
-  color:#ffc400;
-  font-weight:bold;
+.success-box{
+  margin-top:12px;
+  padding:12px;
+  background:#102b1d;
+  border:1px solid #286b43;
+  color:#7dffae;
+  border-radius:12px;
+  display:none;
 }
 
 .hidden{
-  display:none!important;
+  display:none !important;
+}
+
+.note{
+  color:#8f98ab;
+  font-size:12px;
+  margin-top:10px;
+  line-height:1.5;
 }
 
 footer{
   text-align:center;
   color:#667086;
   font-size:12px;
+  padding:20px;
 }
 
 @media(max-width:650px){
+
   .packages{
     grid-template-columns:repeat(2,1fr);
   }
 
+  .hero h1{
+    font-size:25px;
+  }
+
   .profile{
-    flex-direction:column;
-    align-items:stretch;
+    align-items:flex-start;
   }
 
   .logout{
     width:100%;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="nav">
 
-<div class="logo">
-<div class="logoIcon">🐶💎</div>
+  <div class="header-inner">
 
-<div>
-<div class="logoText">KUTTA TOP UP</div>
-<div class="fast">FAST & SECURE TOP UP</div>
-</div>
-</div>
+    <div class="logo">
 
-<div id="status">🔴</div>
+      <div class="logoIcon">
+        🐶💎
+      </div>
 
-</div>
+      <div class="logoText">
+        KUTTA TOP UP
+        <small>FAST & SECURE</small>
+      </div>
+
+    </div>
+
+    <div class="status" id="status">
+      🔴
+    </div>
+
+  </div>
+
 </header>
+
 
 <div class="container">
 
-<section class="hero">
-<h1>🐶💎 KUTTA TOP UP</h1>
-<p>Fast • Simple • Secure Game Top Up</p>
-</section>
+  <section class="hero">
 
-<section class="card">
+    <h1>🐶💎 KUTTA TOP UP</h1>
 
-<h2>🔐 Google Login</h2>
+    <p>
+      Free Fire Diamond Top Up
+    </p>
 
-<div id="loginBox">
+  </section>
 
-<button id="googleLogin" class="google">
-🔵 Continue with Google
-</button>
+
+  <!-- LOGIN -->
+
+  <section class="card">
+
+    <h2>🔐 Account Login</h2>
+
+    <div class="login-area" id="loginBox">
+
+      <button
+        class="google-btn"
+        id="googleLogin"
+      >
+        🔵 Continue with Google
+      </button>
+
+      <div
+        class="error-box"
+        id="loginError"
+      ></div>
+
+      <p class="note">
+        Google account দিয়ে Login করুন।
+      </p>
+
+    </div>
+
+
+    <div
+      class="profile hidden"
+      id="profileBox"
+    >
+
+      <img
+        id="userPhoto"
+        src=""
+        alt="Profile"
+      >
+
+      <div class="profile-info">
+
+        <strong id="userName">
+          Google User
+        </strong>
+
+        <span id="userEmail"></span>
+
+      </div>
+
+      <button
+        class="logout"
+        id="logout"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- MAIN APP -->
+
+  <main
+    id="appArea"
+    class="hidden"
+  >
+
+
+    <!-- BALANCE -->
+
+    <section class="card">
+
+      <h2>💰 My Balance</h2>
+
+      <div class="balance">
+
+        <span>Available Balance</span>
+
+        <strong>
+          ৳0
+        </strong>
+
+      </div>
+
+      <p class="note">
+        Balance system এখন demo mode-এ আছে।
+      </p>
+
+    </section>
+
+
+    <!-- UID -->
+
+    <section class="card">
+
+      <h2>🎮 Free Fire UID</h2>
+
+      <input
+        type="number"
+        id="uid"
+        placeholder="আপনার Free Fire UID দিন"
+      >
+
+      <button
+        class="yellow-btn"
+        id="checkUid"
+      >
+        🔎 Check UID
+      </button>
+
+
+      <div
+        class="uid-result"
+        id="uidResult"
+      >
+
+        <div class="result-line">
+          <span>Player UID</span>
+          <span id="playerUid">-</span>
+        </div>
+
+        <div class="result-line">
+          <span>Player Name</span>
+          <span id="playerName">-</span>
+        </div>
+
+      </div>
+
+      <p class="note">
+        আসল player name দেখাতে অনুমোদিত Free Fire
+        player-data API/backend লাগবে।
+      </p>
+
+    </section>
+
+
+    <!-- PACKAGES -->
+
+    <section class="card">
+
+      <h2>💎 Diamond Packages</h2>
+
+      <div class="packages">
+
+        <div
+          class="package"
+          data-diamond="25"
+          data-price="20"
+        >
+          <div class="diamond">
+            💎 25
+          </div>
+          <div class="price">
+            ৳20
+          </div>
+        </div>
+
+
+        <div
+          class="package"
+          data-diamond="50"
+          data-price="35"
+        >
+          <div class="diamond">
+            💎 50
+          </div>
+          <div class="price">
+            ৳35
+          </div>
+        </div>
+
+
+        <div
+          class="package"
+          data-diamond="115"
+          data-price="75"
+        >
+          <div class="diamond">
+            💎 115
+          </div>
+          <div class="price">
+            ৳75
+          </div>
+        </div>
+
+
+        <div
+          class="package"
+          data-diamond="240"
+          data-price="150"
+        >
+          <div class="diamond">
+            💎 240
+          </div>
+          <div class="price">
+            ৳150
+          </div>
+        </div>
+
+
+        <div
+          class="package"
+          data-diamond="355"
+          data-price="220"
+        >
+          <div class="diamond">
+            💎 355
+          </div>
+          <div class="price">
+            ৳220
+          </div>
+        </div>
+
+
+        <div
+          class="package"
+          data-diamond="610"
+          data-price="380"
+        >
+          <div class="diamond">
+            💎 610
+          </div>
+          <div class="price">
+            ৳380
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ORDER -->
+
+    <section class="card">
+
+      <h2>🛒 Confirm Order</h2>
+
+      <div
+        class="selected"
+        id="selected"
+      >
+        কোনো package নির্বাচন করা হয়নি
+      </div>
+
+      <button
+        class="yellow-btn"
+        id="order"
+        disabled
+      >
+        ✅ Confirm Order
+      </button>
+
+
+      <div
+        class="order-result"
+        id="orderResult"
+      >
+
+        <div class="result-line">
+          <span>Customer Serial</span>
+          <span id="serial">-</span>
+        </div>
+
+        <div class="result-line">
+          <span>UID</span>
+          <span id="orderUid">-</span>
+        </div>
+
+        <div class="result-line">
+          <span>Diamond</span>
+          <span id="orderDiamond">-</span>
+        </div>
+
+        <div class="result-line">
+          <span>Amount</span>
+          <span>৳<span id="orderPrice">0</span></span>
+        </div>
+
+        <div
+          class="success-box"
+          id="orderSuccess"
+        >
+          ✅ Order successfully created!
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
 
 </div>
 
-<div id="profileBox" class="hidden">
-
-<div class="profile">
-
-<div class="user">
-
-<img id="userPhoto" src="" alt="Profile">
-
-<div>
-<b id="userName"></b>
-<div id="userEmail" class="email"></div>
-</div>
-
-</div>
-
-<button id="logout" class="logout">
-Logout
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<div id="appArea" class="hidden">
-
-<section class="card">
-
-<h2>💰 My Balance</h2>
-
-<div class="balance">
-<span>Available Money</span>
-<strong>৳ <span id="balance">0</span></strong>
-</div>
-
-</section>
-
-<section class="card">
-
-<h2>🎮 Player UID</h2>
-
-<input
-id="uid"
-type="number"
-placeholder="Enter Free Fire UID">
-
-<button id="checkUid" class="check">
-🔍 Check UID
-</button>
-
-<div id="uidResult" class="result">
-
-<div class="success">✓ UID Checked</div>
-
-Player ID:
-<b id="playerUid"></b><br>
-
-Player Name:
-<b id="playerName">Demo Player</b>
-
-</div>
-
-</section>
-
-<section class="card">
-
-<h2>💎 Diamond Package</h2>
-
-<div class="packages">
-
-<div class="package" data-diamond="25" data-price="20">
-<div class="diamond">💎 25</div>
-<div class="price">৳20</div>
-</div>
-
-<div class="package" data-diamond="50" data-price="35">
-<div class="diamond">💎 50</div>
-<div class="price">৳35</div>
-</div>
-
-<div class="package" data-diamond="115" data-price="75">
-<div class="diamond">💎 115</div>
-<div class="price">৳75</div>
-</div>
-
-<div class="package" data-diamond="240" data-price="150">
-<div class="diamond">💎 240</div>
-<div class="price">৳150</div>
-</div>
-
-<div class="package" data-diamond="355" data-price="220">
-<div class="diamond">💎 355</div>
-<div class="price">৳220</div>
-</div>
-
-<div class="package" data-diamond="610" data-price="380">
-<div class="diamond">💎 610</div>
-<div class="price">৳380</div>
-</div>
-
-</div>
-
-</section>
-
-<section class="card">
-
-<h2>🧾 Order</h2>
-
-<p id="selected">
-কোনো package নির্বাচন করা হয়নি।
-</p>
-
-<br>
-
-<button id="order" class="order" disabled>
-✅ Confirm Order
-</button>
-
-<div id="orderResult" class="result">
-
-<div class="success">
-✓ Order Created
-</div>
-
-Customer Serial:
-<b id="serial" class="serial"></b><br>
-
-UID:
-<b id="orderUid"></b><br>
-
-Diamond:
-<b id="orderDiamond"></b><br>
-
-Amount:
-<b>৳<span id="orderPrice"></span></b>
-
-</div>
-
-</section>
-
-</div>
 
 <footer>
-© 2026 KUTTA TOP UP
+  © 2026 KUTTA TOP UP
 </footer>
 
-</div>
 
-<!-- PART 2 এখান থেকেই শুরু হবে -->
+<!-- PART 2 এর code এখানে শুরু হবে -->
 
 <script type="module">
-import { initializeApp } from
+  import {
+  initializeApp
+}
+from
 "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
 
 import {
   getAuth,
@@ -455,117 +729,236 @@ import {
   onAuthStateChanged,
   setPersistence,
   browserLocalPersistence
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 
-// ==========================
+// ========================================
 // FIREBASE CONFIG
-// ==========================
+// ========================================
 
 const firebaseConfig = {
 
   apiKey:
-  "AIzaSyB3_U8wUT4v_AMEn9M8WqlNAmeDiJLtjBM",
+    "AIzaSyB3_U8wUT4v_AMEn9M8WqlNAmeDiJLtjBM",
 
   authDomain:
-  "kutta-top-up-7.firebaseapp.com",
+    "kutta-top-up-7.firebaseapp.com",
 
   projectId:
-  "kutta-top-up-7",
+    "kutta-top-up-7",
 
   storageBucket:
-  "kutta-top-up-7.firebasestorage.app",
+    "kutta-top-up-7.firebasestorage.app",
 
   messagingSenderId:
-  "797292114250",
+    "797292114250",
 
   appId:
-  "1:797292114250:web:02a9fea1603ebcecd7d1b3",
+    "1:797292114250:web:02a9fea1603ebcecd7d1b3",
 
   measurementId:
-  "G-2R4D8RCYRM"
+    "G-2R4D8RCYRM"
+
 };
 
 
-// ==========================
-// FIREBASE START
-// ==========================
+// ========================================
+// FIREBASE INITIALIZE
+// ========================================
 
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const provider = new GoogleAuthProvider();
+const app =
+  initializeApp(firebaseConfig);
 
 
-// Login browser-এ মনে রাখবে
+const auth =
+  getAuth(app);
+
+
+const provider =
+  new GoogleAuthProvider();
+
+
+// Google account নির্বাচন দেখানোর জন্য
+provider.setCustomParameters({
+  prompt: "select_account"
+});
+
+
+// Login browser-এ save থাকবে
 setPersistence(
   auth,
   browserLocalPersistence
-);
+).catch((error) => {
 
-
-// ==========================
-// GOOGLE LOGIN
-// ==========================
-
-document
-.getElementById("googleLogin")
-.addEventListener("click", async () => {
-
-  try {
-
-    await signInWithPopup(
-      auth,
-      provider
-    );
-
-  } catch(error) {
-
-    console.error(error);
-
-    alert(
-      "Google Login failed!\n\n" +
-      error.message
-    );
-
-  }
+  console.error(
+    "Persistence Error:",
+    error
+  );
 
 });
 
 
-// ==========================
+// ========================================
+// ELEMENTS
+// ========================================
+
+const googleLogin =
+  document.getElementById(
+    "googleLogin"
+  );
+
+const loginError =
+  document.getElementById(
+    "loginError"
+  );
+
+const loginBox =
+  document.getElementById(
+    "loginBox"
+  );
+
+const profileBox =
+  document.getElementById(
+    "profileBox"
+  );
+
+const appArea =
+  document.getElementById(
+    "appArea"
+  );
+
+const status =
+  document.getElementById(
+    "status"
+  );
+
+
+// ========================================
+// SHOW LOGIN ERROR
+// ========================================
+
+function showLoginError(error){
+
+  console.error(
+    "Firebase Login Error:",
+    error
+  );
+
+
+  let message =
+    "Google Login করা যায়নি।";
+
+
+  if(error && error.code){
+
+    message +=
+      "<br><br><b>Error code:</b> " +
+      error.code;
+
+  }
+
+
+  if(error && error.message){
+
+    message +=
+      "<br><b>Details:</b> " +
+      error.message;
+
+  }
+
+
+  loginError.innerHTML =
+    message;
+
+  loginError.style.display =
+    "block";
+
+}
+
+
+// ========================================
+// GOOGLE LOGIN
+// ========================================
+
+googleLogin.addEventListener(
+  "click",
+  async () => {
+
+    loginError.style.display =
+      "none";
+
+
+    googleLogin.disabled =
+      true;
+
+
+    googleLogin.textContent =
+      "⏳ Logging in...";
+
+
+    try {
+
+      await signInWithPopup(
+        auth,
+        provider
+      );
+
+
+    }
+    catch(error){
+
+      showLoginError(
+        error
+      );
+
+    }
+    finally{
+
+      googleLogin.disabled =
+        false;
+
+
+      googleLogin.textContent =
+        "🔵 Continue with Google";
+
+    }
+
+  }
+);
+
+
+// ========================================
 // AUTH STATE
-// ==========================
+// ========================================
 
 onAuthStateChanged(
   auth,
   (user) => {
 
-    const loginBox =
-      document.getElementById("loginBox");
-
-    const profileBox =
-      document.getElementById("profileBox");
-
-    const appArea =
-      document.getElementById("appArea");
-
-    const status =
-      document.getElementById("status");
-
-
     if(user){
 
-      // Login button hide
-      loginBox.classList.add("hidden");
+      // Login area hide
+      loginBox.classList.add(
+        "hidden"
+      );
+
 
       // Profile show
-      profileBox.classList.remove("hidden");
+      profileBox.classList.remove(
+        "hidden"
+      );
+
 
       // Main app show
-      appArea.classList.remove("hidden");
+      appArea.classList.remove(
+        "hidden"
+      );
+
+
+      status.textContent =
+        "🟢";
 
 
       document.getElementById(
@@ -578,7 +971,8 @@ onAuthStateChanged(
       document.getElementById(
         "userEmail"
       ).textContent =
-        user.email || "";
+        user.email ||
+        "";
 
 
       document.getElementById(
@@ -588,19 +982,29 @@ onAuthStateChanged(
         "https://via.placeholder.com/100";
 
 
-      status.textContent = "🟢";
-
     }
-
     else{
 
-      loginBox.classList.remove("hidden");
+      // Login show
+      loginBox.classList.remove(
+        "hidden"
+      );
 
-      profileBox.classList.add("hidden");
 
-      appArea.classList.add("hidden");
+      // Profile hide
+      profileBox.classList.add(
+        "hidden"
+      );
 
-      status.textContent = "🔴";
+
+      // App hide
+      appArea.classList.add(
+        "hidden"
+      );
+
+
+      status.textContent =
+        "🔴";
 
     }
 
@@ -608,87 +1012,104 @@ onAuthStateChanged(
 );
 
 
-// ==========================
+// ========================================
 // LOGOUT
-// ==========================
+// ========================================
 
 document
 .getElementById("logout")
-.addEventListener("click", async () => {
+.addEventListener(
+  "click",
+  async () => {
 
-  try {
+    try{
 
-    await signOut(auth);
+      await signOut(
+        auth
+      );
 
-  } catch(error) {
+    }
+    catch(error){
 
-    console.error(error);
+      console.error(
+        "Logout Error:",
+        error
+      );
 
-    alert(
-      "Logout failed!"
-    );
+      alert(
+        "Logout failed: " +
+        error.message
+      );
+
+    }
 
   }
+);
 
-});
 
-
-// ==========================
+// ========================================
 // UID CHECK
-// ==========================
+// ========================================
 
 document
 .getElementById("checkUid")
-.addEventListener("click", () => {
+.addEventListener(
+  "click",
+  () => {
 
-  const uid =
-    document
-    .getElementById("uid")
-    .value
-    .trim();
+    const uid =
+      document
+      .getElementById("uid")
+      .value
+      .trim();
 
 
-  if(uid.length < 5){
+    if(uid.length < 5){
 
-    alert(
-      "সঠিক Free Fire UID দিন।"
-    );
+      alert(
+        "সঠিক Free Fire UID দিন।"
+      );
 
-    return;
+      return;
+
+    }
+
+
+    document.getElementById(
+      "playerUid"
+    ).textContent =
+      uid;
+
+
+    /*
+      IMPORTANT:
+
+      এখানে Demo Player দেওয়া হয়েছে।
+
+      আসল Free Fire player name
+      automatically দেখানোর জন্য
+      authorized player-data API/backend
+      প্রয়োজন।
+    */
+
+    document.getElementById(
+      "playerName"
+    ).textContent =
+      "Demo Player";
+
+
+    document.getElementById(
+      "uidResult"
+    ).style.display =
+      "block";
 
   }
+);
 
 
-  document.getElementById(
-    "playerUid"
-  ).textContent = uid;
-
-
-  /*
-   এখানে Demo Player রাখা হয়েছে।
-
-   আসল Free Fire player name
-   দেখাতে authorized player-data
-   API/backend প্রয়োজন।
-  */
-
-  document.getElementById(
-    "playerName"
-  ).textContent =
-    "Demo Player";
-
-
-  document.getElementById(
-    "uidResult"
-  ).style.display =
-    "block";
-
-});
-
-
-// ==========================
-// DIAMOND PACKAGE
-// ==========================
+// ========================================
+// PACKAGE SYSTEM
+// ========================================
 
 const packages =
   document.querySelectorAll(
@@ -696,9 +1117,12 @@ const packages =
   );
 
 
-let selectedDiamond = null;
+let selectedDiamond =
+  null;
 
-let selectedPrice = null;
+
+let selectedPrice =
+  null;
 
 
 packages.forEach(
@@ -743,7 +1167,8 @@ packages.forEach(
 
         document.getElementById(
           "order"
-        ).disabled = false;
+        ).disabled =
+          false;
 
       }
     );
@@ -752,16 +1177,17 @@ packages.forEach(
 );
 
 
-// ==========================
+// ========================================
 // CUSTOMER SERIAL
-// ==========================
+// ========================================
 
 function generateSerial(){
 
   const number =
     Math.floor(
       100000 +
-      Math.random() * 900000
+      Math.random() *
+      900000
     );
 
 
@@ -770,78 +1196,87 @@ function generateSerial(){
 }
 
 
-// ==========================
+// ========================================
 // ORDER CONFIRM
-// ==========================
+// ========================================
 
 document
 .getElementById("order")
-.addEventListener("click", () => {
+.addEventListener(
+  "click",
+  () => {
 
-  const uid =
-    document
-    .getElementById("uid")
-    .value
-    .trim();
+    const uid =
+      document
+      .getElementById("uid")
+      .value
+      .trim();
 
 
-  if(!uid){
+    if(!uid){
 
-    alert(
-      "আগে UID দিন।"
-    );
+      alert(
+        "আগে Free Fire UID দিন।"
+      );
 
-    return;
+      return;
+
+    }
+
+
+    if(!selectedDiamond){
+
+      alert(
+        "Diamond package নির্বাচন করুন।"
+      );
+
+      return;
+
+    }
+
+
+    const serial =
+      generateSerial();
+
+
+    document.getElementById(
+      "serial"
+    ).textContent =
+      serial;
+
+
+    document.getElementById(
+      "orderUid"
+    ).textContent =
+      uid;
+
+
+    document.getElementById(
+      "orderDiamond"
+    ).textContent =
+      selectedDiamond +
+      " 💎";
+
+
+    document.getElementById(
+      "orderPrice"
+    ).textContent =
+      selectedPrice;
+
+
+    document.getElementById(
+      "orderResult"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "orderSuccess"
+    ).style.display =
+      "block";
 
   }
-
-
-  if(!selectedDiamond){
-
-    alert(
-      "Diamond package নির্বাচন করুন।"
-    );
-
-    return;
-
-  }
-
-
-  const serial =
-    generateSerial();
-
-
-  document.getElementById(
-    "serial"
-  ).textContent =
-    serial;
-
-
-  document.getElementById(
-    "orderUid"
-  ).textContent =
-    uid;
-
-
-  document.getElementById(
-    "orderDiamond"
-  ).textContent =
-    selectedDiamond +
-    " 💎";
-
-
-  document.getElementById(
-    "orderPrice"
-  ).textContent =
-    selectedPrice;
-
-
-  document.getElementById(
-    "orderResult"
-  ).style.display =
-    "block";
-
-});
+);
 
 </script>
 
